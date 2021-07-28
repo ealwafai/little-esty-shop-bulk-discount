@@ -3,7 +3,7 @@
 
 <h2>ID #: <%= @invoice.id %></h2>
 <h3>Status:
-  <%= form_with(model: [:admin, @invoice], method: :patch, url: admin_invoice_path(@invoice), local: true) do |f| %>
+  <%= form_with( model: [:admin, @invoice], method: :patch, url: admin_invoice_path(@invoice), local: true) do |f| %>
     <%= f.select(:status, options_for_select([ ["In Progress", "in progress"], ["Completed", :completed], ["Cancelled", :cancelled]], selected: @invoice.status || nil), {:include_blank => "Select Status"}) %>
   <% end %>
 <h3>
@@ -16,10 +16,10 @@
 <% @invoice.invoice_items.each do |inv_item| %>
   <p>Name: <%= inv_item.item.name %></p>
   <p>Quantity: <%= inv_item.quantity %></p>
-  <p>Price: $<%= inv_item.unit_price / 100 %></p>
+  <p>Price: $<%= inv_item.price_display %></p>
   <p>Item Status: <%= inv_item.status %></p>
 <% end %>
 
 <br><hr>
 
-<h3>Total Projected Revenue: $<%= @invoice.total_revenue / 100 %></h3>
+<h3>Total Projected Revenue: $<%= @invoice.total_revenue %></h3>
