@@ -10,8 +10,10 @@
 
 <h2>Items on this Invoice</h2>
 <% @invoice.invoice_items.each do |inv_item| %>
-  <p><%= inv_item.item.name%></p>
-  <p><%= inv_item.quantity%></p>
-  <p><%= inv_item.unit_price%></p>
-  <p><%= inv_item.status%></p>
+  <p>Name: <%= inv_item.item.name %></p>
+  <p>Quantity: <%= inv_item.quantity %></p>
+  <p>Price: $<%= inv_item.unit_price / 100 %></p>
+  <p>Item Status: <%= inv_item.status %></p>
 <% end %>
+
+<br><hr>

@@ -5,7 +5,11 @@ RSpec.describe 'Admin Invoice show page' do
     @invoice_1 = create(:invoice)
     @item_1 = create(:item)
     @invoice_item_1 = InvoiceItem.create!(
-      invoice: @invoice_1, item: @item_1, quantity: 1, status: 0
+      invoice: @invoice_1,
+      item: @item_1,
+      quantity: 1,
+      status: 0,
+      unit_price: 11111
     )
   end
 
@@ -24,7 +28,12 @@ RSpec.describe 'Admin Invoice show page' do
 
     expect(page).to have_content(@item_1.name)
     expect(page).to have_content(@invoice_item_1.quantity)
-    expect(page).to have_content(@invoice_item_1.unit_price)
+    expect(page).to have_content(@invoice_item_1.unit_price / 100)
     expect(page).to have_content(@invoice_item_1.status)
   end
+
+  it 'shows total revenue to be earned through invoice' do
+    visit admin_invoice_path(@invoice_1)
+  end
+  # Then I see the total revenue that will be generated from this invoice
 end
