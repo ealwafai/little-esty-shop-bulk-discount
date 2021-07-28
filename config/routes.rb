@@ -5,4 +5,8 @@ Rails.application.routes.draw do
     resources only: [:index]
     resources :merchants
   end
+
+  resources :merchants do
+    resources :items
+  end
 end
