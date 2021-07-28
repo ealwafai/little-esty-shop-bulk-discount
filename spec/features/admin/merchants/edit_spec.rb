@@ -15,8 +15,8 @@ RSpec.describe 'admin merchants edit page' do
 
   it 'displays form with existing merchant attributes' do
     visit edit_admin_merchant_path(@merchants_1)
-    save_and_open_page
-    expect(page).to have_content("#{@merchants_1.name}")
+
+    find_field('Name', with: "#{@merchants_1.name}").value
   end
 
   it 'updates merchant info from form' do
@@ -27,5 +27,18 @@ RSpec.describe 'admin merchants edit page' do
 
     expect(current_path).to eq(admin_merchant_path(@merchants_1))
     expect(page).to have_content('Chuck Norris')
+  end
+
+  it 'displays flash message on show page when updated' do
+    visit edit_admin_merchant_path(@merchants_1)
+
+    fill_in 'Name', with: 'Chuck Norris'
+    click_button('Submit')
+    
+    expect(current_path).to eq(admin_merchant_path(@merchants_1))
+
+    within ("#{notice}") do
+      expect(page).to have_content('Merchant Sucessfully Updated')
+    end
   end
 end
