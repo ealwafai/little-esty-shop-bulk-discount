@@ -1,0 +1,6 @@
+<h1>Admin Invoices Index</h1>
+<hr>
+
+<% @invoices.each do |invoice| %>
+  <h3>ID #:<%= link_to "#{invoice.id}", admin_invoice_path(invoice) %></h3>
+<% end %>
