@@ -22,19 +22,9 @@ RSpec.describe 'Admin Invoice show page' do
   it 'shows invoice items and item information' do
     visit admin_invoice_path(@invoice_1)
 
-    # name
     expect(page).to have_content(@item_1.name)
-    # Quantity
-    expect(page).to have_content(@item_1.quantity)
-    # Price
-    expect(page).to have_content(@item_1.unit_price)
-    # Status
-    expect(page).to have_content(@item_1.status)
+    expect(page).to have_content(@invoice_item_1.quantity)
+    expect(page).to have_content(@invoice_item_1.unit_price)
+    expect(page).to have_content(@invoice_item_1.status)
   end
-  # When I visit an admin invoice show page
-  # Then I see all of the items on the invoice including:
-  # - Item name
-  # - The quantity of the item ordered
-  # - The price the Item sold for
-  # - The Invoice Item status
 end

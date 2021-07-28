@@ -9,9 +9,9 @@
 <br><hr>
 
 <h2>Items on this Invoice</h2>
-<% @invoice.items.each do |item| %>
-  <p><%= item.name%></p>
-  <p><%= item.quantity%></p>
-  <p><%= item.unit_price%></p>
-  <p><%= item.status%></p>
+<% @invoice.invoice_items.each do |inv_item| %>
+  <p><%= inv_item.item.name%></p>
+  <p><%= inv_item.quantity%></p>
+  <p><%= inv_item.unit_price%></p>
+  <p><%= inv_item.status%></p>
 <% end %>
