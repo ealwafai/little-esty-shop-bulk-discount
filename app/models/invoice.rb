@@ -8,4 +8,8 @@ class Invoice < ApplicationRecord
   def total_revenue
     invoice_items.sum("unit_price * quantity") / 100.00
   end
+
+  def created_at_display
+    created_at.strftime("%A, %B %e, %Y")
+  end
 end
