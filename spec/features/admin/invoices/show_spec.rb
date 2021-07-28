@@ -42,14 +42,12 @@ RSpec.describe 'Admin Invoice show page' do
     expect(page).to have_select(selected: 'Cancelled')
   end
 
-  xit 'can update status using select field' do
+  it 'can update status using select field' do
     visit admin_invoice_path(@invoice_1)
-    select('Completed', :from => 'Select Box')
+    expect(@invoice_1.status).to eq('cancelled')
+    select('Completed')
+    click_button 'Update Invoice'
+    @invoice_1.reload
+    expect(@invoice_1.status).to eq('completed')
   end
-  # When I click this select field,
-  # Then I can select a new status for the Invoice,
-  # And next to the select field I see a button to "Update Invoice Status"
-  # When I click this button
-  # I am taken back to the admin invoice show page
-  # And I see that my Invoice's status has now been updated
 end
