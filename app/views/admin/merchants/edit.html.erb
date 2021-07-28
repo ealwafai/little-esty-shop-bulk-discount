@@ -1,6 +1,6 @@
 <%= form_with url: admin_merchant_path(@merchant), method: :patch, local: true do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name, :value => @merchant.name %>
+  <%= f.label :new_name, 'Name' %>
+  <%= f.text_field :new_name, :value => @merchant.name %>
   <br>
   <%= f.submit 'Submit' %>
 <% end %>
