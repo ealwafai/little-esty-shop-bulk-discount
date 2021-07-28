@@ -5,3 +5,13 @@
 <h3>Status: <%= @invoice.status %><h3>
 <h3>Created at: <%= @invoice.created_at.strftime(" %A, %B %e, %Y") %><h3>
 <h3>Customer Name: <%= @invoice.customer.first_name %> <%= @invoice.customer.last_name %><h3>
+
+<br><hr>
+
+<h2>Items on this Invoice</h2>
+<% @invoice.items.each do |item| %>
+  <p><%= item.name%></p>
+  <p><%= item.quantity%></p>
+  <p><%= item.unit_price%></p>
+  <p><%= item.status%></p>
+<% end %>
