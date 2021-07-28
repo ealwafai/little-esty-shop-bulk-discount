@@ -18,8 +18,26 @@ RSpec.describe Invoice, type: :model do
   #   describe '.' do
   #   end
   # end
-  # describe 'instance methods' do
-  #   describe '#' do
-  #   end
-  # end
+  describe 'instance methods' do
+    describe '#total_revenue' do
+      it 'calculates total revenue for invoice' do
+        invoice = create(:invoice)
+        item1 = create(:item)
+        item2 = create(:item)
+        invoice_item1 = InvoiceItem.create!(
+          invoice: invoice,
+          item: item1,
+          quantity: 1,
+          unit_price: 100
+        )
+        invoice_item2 = InvoiceItem.create!(
+          invoice: invoice,
+          item: item2,
+          quantity: 1,
+          unit_price: 100
+        )
+        expect(invoice.total_revenue).to eq(200)
+      end
+    end
+  end
 end
