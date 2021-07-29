@@ -16,8 +16,13 @@ class ItemsController < ApplicationController
   def create
     merchant = Merchant.find(params[:merchant_id])
     params[:unit_price] = (params[:unit_price].to_f * 100.0).to_i
-    merchant.items.create!(item_params)
-    redirect_to merchant_items_path(merchant)
+    item = merchant.items.new(item_params)
+    if item.save
+      redirect_to merchant_items_path(merchant)
+    else
+      redirect_to new_merchant_item_path(merchant)
+      flash[:alert] = "Error: #{error_message(item.errors)}"
+    end
   end
 
   def edit

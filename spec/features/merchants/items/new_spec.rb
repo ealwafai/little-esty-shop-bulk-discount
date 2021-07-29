@@ -16,4 +16,13 @@ RSpec.describe 'New Item Page' do
     expect(page).to have_content('Lotion')
     expect(page).to have_button('Enable')
   end
+  it 'returns error if fields are missing' do
+    fill_in(:name, with: '')
+    fill_in(:description, with: 'aloe body lotion')
+    fill_in(:unit_price, with: 6.50)
+    click_button('Submit')
+    
+    expect(page).to have_content("Error: Name can't be blank")
+    expect(page).to have_current_path(new_merchant_item_path(@merchant))
+  end
 end
