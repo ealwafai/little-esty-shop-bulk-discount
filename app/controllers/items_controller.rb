@@ -15,6 +15,7 @@ class ItemsController < ApplicationController
 
   def create
     merchant = Merchant.find(params[:merchant_id])
+    params[:unit_price] = (params[:unit_price].to_f * 100.0).to_i
     merchant.items.create!(item_params)
     redirect_to merchant_items_path(merchant)
   end
@@ -27,6 +28,7 @@ class ItemsController < ApplicationController
   def update
     merchant = Merchant.find(params[:merchant_id])
     item = Item.find(params[:id])
+    params[:unit_price] = (params[:unit_price].to_f * 100.0).to_i
     if params[:status]
       item.update!(status: params[:status])
       redirect_to merchant_items_path(merchant)
@@ -36,7 +38,7 @@ class ItemsController < ApplicationController
       redirect_to merchant_item_path(merchant, item)
     end
   end
-  
+
   private
   def item_params
     params.permit(:name, :description, :unit_price)

@@ -13,7 +13,7 @@ RSpec.describe 'Edit Item Page' do
   it 'can enter new information and submit to be redirected to merchant item page and see update notice' do
     fill_in(:name, with: 'Lotion')
     fill_in(:description, with: 'aloe body lotion')
-    fill_in(:unit_price, with: 650)
+    fill_in(:unit_price, with: 6.50)
     click_button('Submit')
 
     expect(current_path).to eq(merchant_item_path(@merchant, @item))
