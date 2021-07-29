@@ -2,24 +2,24 @@ require 'rails_helper'
 
 RSpec.describe 'Admin Deshboard/Index page' do
   it 'displays admin dashboard header' do
-    visit admin_dashboard_index_path
+    visit admin_index_path
     expect(page).to have_content('Welcome to the Admin Dashboard')
   end
 
   it 'shows links to admin merchants and invocies index' do
-    visit admin_dashboard_index_path
+    visit admin_index_path
     expect(page).to have_content('Merchants Index')
     click_link 'Admin Merchants Index'
     expect(current_path).to eq(admin_merchants_path)
     
-    visit admin_dashboard_index_path
+    visit admin_index_path
     expect(page).to have_content('Invoices Index')
     click_link 'Admin Invoices Index'
     expect(current_path).to eq(admin_invoices_path)
   end
 
   xit 'shows top 5 customer names along with successful transactions' do
-    visit admin_dashboard_index_path
+    visit admin_index_path
   end
   # When I visit the admin dashboard
   # Then I see the names of the top 5 customers
@@ -28,7 +28,7 @@ RSpec.describe 'Admin Deshboard/Index page' do
   # they have conducted
 
   xit 'displays incomplete invoices' do
-    visit admin_dashboard_index_path
+    visit admin_index_path
   end
   # When I visit the admin dashboard
   # Then I see a section for "Incomplete Invoices"
@@ -37,11 +37,11 @@ RSpec.describe 'Admin Deshboard/Index page' do
   # And each invoice id links to that invoice's admin show page
 
   xit 'links to invoice show pages through their IDs' do
-    visit admin_dashboard_index_path
+    visit admin_index_path
   end
 
   xit 'displays creation dates of invoices ordered oldest to newest' do
-    visit admin_dashboard_index_path
+    visit admin_index_path
   end
   # When I visit the admin dashboard
   # In the section for "Incomplete Invoices",

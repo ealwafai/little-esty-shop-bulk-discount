@@ -4,11 +4,12 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :merchants
     resources :invoices
-    resources :dashboard, only: [:index]
   end
 
   resources :merchants do
     resources :items
   end
+
+  resources :admin, controller: 'admin/dashboard', only: [:index]
 
 end
