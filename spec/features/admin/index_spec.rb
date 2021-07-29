@@ -9,13 +9,13 @@ RSpec.describe 'Admin Deshboard/Index page' do
   it 'shows links to admin merchants and invocies index' do
     visit admin_dashboard_index_path
     expect(page).to have_content('Merchants Index')
-    # click_link 'Admin Merchants Index'
-    # expect(current_path).to eq(admin_merchants_path)
+    click_link 'Admin Merchants Index'
+    expect(current_path).to eq(admin_merchants_path)
     
     visit admin_dashboard_index_path
     expect(page).to have_content('Invoices Index')
-    # click_link 'Admin Invoices Index'
-    # expect(current_path).to eq(admin_invoices_path)
+    click_link 'Admin Invoices Index'
+    expect(current_path).to eq(admin_invoices_path)
   end
 
   xit 'shows top 5 customer names along with successful transactions' do
