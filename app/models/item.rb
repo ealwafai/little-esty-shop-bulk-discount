@@ -15,6 +15,15 @@ class Item < ApplicationRecord
     where(status: 'disabled')
   end
 
+  def self.popular_items
+    Item.select('items.*, sum(invoice_items.quantity * invoice_items.unit_price/100.0) as revenue')
+    .joins(invoices: :transactions)
+    .where("transactions.result = 'success'")
+    .group('items.id')
+    .order('revenue DESC')
+    .limit(5)
+  end
+
   def unit_price_dollars
     unit_price / 100.0
   end
