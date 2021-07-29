@@ -1,6 +1,8 @@
 <h2><%= @merchant.name %></h2>
 <h3><%= @item.name %></h3>
 
+<%= flash[:success] %>
+
 <p>Description: <%= @item.description %></p>
-<p>Current Price: <%= @item.unit_price %></p>
-<p>'Update Item'</p>
+<p>Current Price: <%= number_to_currency(@item.unit_price_dollars) %></p>
+<p><%= link_to 'Update Item', edit_merchant_item_path(@merchant, @item) %></p>
