@@ -45,7 +45,7 @@ RSpec.describe 'Merchant Invoices show page' do
   # - The Invoice Item status
   # And I do not see any information related to Items for other merchants
 
-  it "displays the invoice item info such as item name, quantity ordered, price of item, invoice item status" do
+  it "displays the invoice item information like the item name, quantity ordered, price of item, invoice item status" do
     within "#invoice_item-info-#{@invoice_item_1.id}" do
       expect(page).to have_content("Invoice item name: #{@item_1.name}")
       expect(page).to have_content("Invoice item quantity: #{@invoice_item_1.quantity}")
@@ -59,5 +59,16 @@ RSpec.describe 'Merchant Invoices show page' do
       expect(page).to have_content("Invoice item price: #{@invoice_item_2.unit_price}")
       expect(page).to have_content("Invoice item status: #{@invoice_item_2.status}")
     end
+  end
+
+  # Merchant Invoice Show Page: Total Revenue
+  #
+  # As a merchant
+  # When I visit my merchant invoice show page
+  # Then I see the total revenue that will be generated from all of my items on the invoice
+
+
+  it "displays the total revenue from all items on the invoice" do
+    expect(page).to have_content("Total revenue from invoice: #{@invoice.total_revenue}")
   end
 end
