@@ -10,4 +10,8 @@ class Customer < ApplicationRecord
       .order(top: :desc)
       .limit(5)
   end
+
+  def successful_transactions
+    transactions.where('result = ?', 'success').count
+  end
 end
