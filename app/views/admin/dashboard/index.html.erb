@@ -18,3 +18,8 @@
 <br><hr><br>
 
 <h2>Incomplete Invoices</h2>
+<section id="incomplete_invoices">
+  <% @incomplete_invoices.each do |invoice| %>
+    <p>ID: <%= invoice.id %></p>
+  <% end %>
+</section>

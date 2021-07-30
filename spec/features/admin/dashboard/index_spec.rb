@@ -1,6 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin Deshboard/Index page' do
+  before :each do
+    # Incomplete Invoices setup
+    @customer = create(:customer)
+    @invoice_1 = create(:invoice, customer: @customer, status: 0)
+    @invoice_2 = create(:invoice, customer: @customer, status: 0)
+    @invoice_3 = create(:invoice, customer: @customer, status: 0)
+    @invoice_4 = create(:invoice, customer: @customer, status: 0)
+    @invoice_5 = create(:invoice, customer: @customer, status: 0)
+    @inv_item_1 = create(:invoice_item, invoice: @invoice_1, status: 2)
+    @inv_item_2 = create(:invoice_item, invoice: @invoice_2, status: 2)
+    @inv_item_3 = create(:invoice_item, invoice: @invoice_3, status: 2)
+    @inv_item_4 = create(:invoice_item, invoice: @invoice_4, status: 0)
+    @inv_item_5 = create(:invoice_item, invoice: @invoice_5, status: 1)
+  end
+
   it 'displays admin dashboard header' do
     visit admin_index_path
     expect(page).to have_content('Welcome to the Admin Dashboard')
@@ -19,44 +34,52 @@ RSpec.describe 'Admin Deshboard/Index page' do
   end
 
   it 'shows top 5 customer names along with successful transactions' do
-    @customer_1 = create(:customer)
-    @customer_2 = create(:customer)
-    @customer_3 = create(:customer)
-    @customer_4 = create(:customer)
-    @customer_5 = create(:customer)
-    @customer_6 = create(:customer)
+    customer_1 = create(:customer)
+    customer_2 = create(:customer)
+    customer_3 = create(:customer)
+    customer_4 = create(:customer)
+    customer_5 = create(:customer)
+    customer_6 = create(:customer)
 
     Customer.all.each do |customer|
       create_list(:invoice, 1, customer: customer)
     end
 
-    create_list(:transaction, 2, result: 'failed', invoice: @customer_1.invoices.first)
-    create_list(:transaction, 2, result: 'success', invoice: @customer_2.invoices.first)
-    create_list(:transaction, 3, result: 'success', invoice: @customer_3.invoices.first)
-    create_list(:transaction, 4, result: 'success', invoice: @customer_4.invoices.first)
-    create_list(:transaction, 5, result: 'success', invoice: @customer_5.invoices.first)
-    create_list(:transaction, 6, result: 'success', invoice: @customer_6.invoices.first)
+    create_list(:transaction, 2, result: 'failed', invoice: customer_1.invoices.first)
+    create_list(:transaction, 2, result: 'success', invoice: customer_2.invoices.first)
+    create_list(:transaction, 3, result: 'success', invoice: customer_3.invoices.first)
+    create_list(:transaction, 4, result: 'success', invoice: customer_4.invoices.first)
+    create_list(:transaction, 5, result: 'success', invoice: customer_5.invoices.first)
+    create_list(:transaction, 6, result: 'success', invoice: customer_6.invoices.first)
     
     visit admin_index_path
     expect(page).to have_content("Top 5 Customers")
     
     within("#top_five") do
-      expect(@customer_6.first_name).to appear_before(@customer_5.first_name)
+      expect(customer_6.first_name).to appear_before(customer_5.first_name)
+      expect(page).to_not have_content(customer_1.first_name)
     end
   end
 
-  xit 'displays incomplete invoices' do
-    visit admin_index_path
-  end
-  # When I visit the admin dashboard
-  # Then I see a section for "Incomplete Invoices"
-  # In that section I see a list of the ids of all invoices
-  # That have items that have not yet been shipped
-  # And each invoice id links to that invoice's admin show page
+  it 'displays incomplete invoices' do
+    inv_id_1 = "ID: #{@invoice_4.id}"
+    inv_id_2 = "ID: #{@invoice_5.id}"
 
+    visit admin_index_path
+    expect(page).to have_content('Incomplete Invoices')
+
+    within("#incomplete_invoices") do
+      expect(page).to_not have_content(@invoice_1.id)
+      expect(page).to have_content(@invoice_4.id)
+      expect(page).to have_content(@invoice_5.id)
+      expect(inv_id_1).to appear_before(inv_id_2)
+    end
+  end
+  
   xit 'links to invoice show pages through their IDs' do
     visit admin_index_path
   end
+  # And each invoice id links to that invoice's admin show page
 
   xit 'displays creation dates of invoices ordered oldest to newest' do
     visit admin_index_path
