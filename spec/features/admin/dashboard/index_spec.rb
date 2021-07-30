@@ -18,14 +18,32 @@ RSpec.describe 'Admin Deshboard/Index page' do
     expect(current_path).to eq(admin_invoices_path)
   end
 
-  xit 'shows top 5 customer names along with successful transactions' do
+  it 'shows top 5 customer names along with successful transactions' do
+    @customer_1 = create(:customer)
+    @customer_2 = create(:customer)
+    @customer_3 = create(:customer)
+    @customer_4 = create(:customer)
+    @customer_5 = create(:customer)
+    @customer_6 = create(:customer)
+
+    Customer.all.each do |customer|
+      create_list(:invoice, 1, customer: customer)
+    end
+
+    create_list(:transaction, 2, result: 'failed', invoice: @customer_1.invoices.first)
+    create_list(:transaction, 2, result: 'success', invoice: @customer_2.invoices.first)
+    create_list(:transaction, 3, result: 'success', invoice: @customer_3.invoices.first)
+    create_list(:transaction, 4, result: 'success', invoice: @customer_4.invoices.first)
+    create_list(:transaction, 5, result: 'success', invoice: @customer_5.invoices.first)
+    create_list(:transaction, 6, result: 'success', invoice: @customer_6.invoices.first)
+    
     visit admin_index_path
+    expect(page).to have_content("Top 5 Customers")
+    
+    within("#top_five") do
+      expect(@customer_6.first_name).to appear_before(@customer_5.first_name)
+    end
   end
-  # When I visit the admin dashboard
-  # Then I see the names of the top 5 customers
-  # who have conducted the largest number of successful transactions
-  # And next to each customer name I see the number of successful transactions
-  # they have conducted
 
   xit 'displays incomplete invoices' do
     visit admin_index_path
