@@ -26,7 +26,7 @@ class Admin::MerchantsController < ApplicationController
     if params[:status]
       merchant.update(status: params[:status])
       redirect_to admin_merchants_path
-    elsif params[:new_name]
+    elsif params[:merchant]
       merchant.update(merchant_params)
       flash[:notice] = "Merchant Sucessfully Updated"
       redirect_to admin_merchant_path(merchant)
