@@ -52,6 +52,19 @@ RSpec.describe Item, type: :model do
         expect(Item.popular_items).to eq([@item_3, @item_1, item_4, item_6, @item_2])
       end
     end
+    describe '.item_top_day' do
+      it 'returns top date of sales for item' do
+        customer = create(:customer)
+        invoice_1 = create(:invoice, customer: customer, status: 'completed', created_at: '2021-03-06 21:54:10 UTC')
+        invoice_2 = create(:invoice, customer: customer, status: 'completed')
+        invoice_item_1 = create(:invoice_item, invoice: invoice_1, item: @item_1, quantity: 2, unit_price: 5000)
+        invoice_item_2 = create(:invoice_item, invoice: invoice_2, item: @item_1, quantity: 1, unit_price: 2000)
+        transaction_1 = create(:transaction, result: 'success', invoice: invoice_1)
+        transaction_2 = create(:transaction, result: 'success', invoice: invoice_2)
+
+        expect(Item.item_top_day(@item_1.id)).to eq('03/06/21')
+      end
+    end
   end
 
   describe 'instance methods' do
