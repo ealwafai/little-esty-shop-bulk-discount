@@ -43,19 +43,28 @@ RSpec.describe Invoice, type: :model do
   end
   describe 'instance methods' do
     describe '#total_revenue' do
-      it 'finds the revenue for all invoice items in a single invoice' do
-        customer = create(:customer)
-        invoice = create(:invoice, customer: customer)
+      it 'calculates total revenue for invoice' do
+        invoice = create(:invoice)
+        item1 = create(:item)
+        item2 = create(:item)
+        invoice_item1 = InvoiceItem.create!(
+          invoice: invoice,
+          item: item1,
+          quantity: 1,
+          unit_price: 100
+        )
+        invoice_item2 = InvoiceItem.create!(
+          invoice: invoice,
+          item: item2,
+          quantity: 1,
+          unit_price: 100
+        )
+        expect(invoice.total_revenue).to eq(2)
+      end
 
-        item_1 = create(:item)
-        item_2 = create(:item)
-        item_3 = create(:item)
-
-        invoice_item_1 = create(:invoice_item, invoice_id: invoice.id, item_id: item_1.id, quantity: 5, unit_price: 20)
-        invoice_item_2 = create(:invoice_item, invoice_id: invoice.id, item_id: item_2.id, quantity: 10, unit_price: 25)
-        invoice_item_3 = create(:invoice_item, invoice_id: invoice.id, item_id: item_3.id, quantity: 15, unit_price: 30)
-
-        expect(invoice.total_revenue).to eq(800)
+      it 'displays creation time in humanized format' do
+        invoice = create(:invoice, created_at: 'Wed, 28 Jul 2021 21:49:20 UTC +00:00')
+        expect(invoice.created_at_display).to eq('Wednesday, July 28, 2021')
       end
     end
   end
