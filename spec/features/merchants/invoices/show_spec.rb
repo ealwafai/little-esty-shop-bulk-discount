@@ -67,8 +67,37 @@ RSpec.describe 'Merchant Invoices show page' do
   # When I visit my merchant invoice show page
   # Then I see the total revenue that will be generated from all of my items on the invoice
 
-
   it "displays the total revenue from all items on the invoice" do
     expect(page).to have_content("Total revenue from invoice: #{@invoice.total_revenue}")
+  end
+
+#   Merchant Invoice Show Page: Update Item Status
+#
+# As a merchant
+# When I visit my merchant invoice show page
+# I see that each invoice item status is a select field
+# And I see that the invoice item's current status is selected
+# When I click this select field,
+# Then I can select a new status for the Item,
+# And next to the select field I see a button to "Update Item Status"
+# When I click this button
+# I am taken back to the merchant invoice show page
+# And I see that my Item's status has now been updated
+  it 'can click on the select status for an item and update it to a new status' do
+    within "#invoice_item-info-#{@invoice_item_1.id}" do
+
+     expect(page).to have_content("Invoice item status: #{@invoice_item_1.status}")
+
+     expect(page).to have_select(:status, selected: 'packaged')
+     expect(page).to have_select(:status, :options => ['pending', 'packaged', 'shipped'])
+
+     select('shipped', from: 'status')
+
+     click_on('Update Item Status')
+
+     expect(current_path).to eq("/merchants/#{@merchant.id}/invoices/#{@invoice.id}")
+
+     expect(page).to have_select(:status, selected: 'shipped')
+   end
   end
 end
