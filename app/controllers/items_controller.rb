@@ -1,12 +1,11 @@
 class ItemsController < ApplicationController
   def index
     @merchant = Merchant.find(params[:merchant_id])
-    @items = @merchant.items
   end
 
   def show
     @merchant = Merchant.find(params[:merchant_id])
-    @item = Item.find(params[:id])
+    @item = @merchant.items.find(params[:id])
   end
 
   def new
@@ -27,18 +26,18 @@ class ItemsController < ApplicationController
 
   def edit
     @merchant = Merchant.find(params[:merchant_id])
-    @item = Item.find(params[:id])
+    @item = @merchant.items.find(params[:id])
   end
 
   def update
     merchant = Merchant.find(params[:merchant_id])
-    item = Item.find(params[:id])
+    item = merchant.items.find(params[:id])
     params[:unit_price] = (params[:unit_price].to_f * 100.0).to_i
     if params[:status]
-      item.update!(status: params[:status])
+      item.update(status: params[:status])
       redirect_to merchant_items_path(merchant)
     else
-      item.update!(item_params)
+      item.update(item_params)
       flash[:success] = "Item information has been successfully updated"
       redirect_to merchant_item_path(merchant, item)
     end
