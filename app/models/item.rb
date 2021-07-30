@@ -16,7 +16,7 @@ class Item < ApplicationRecord
   end
 
   def self.popular_items
-    Item.select('items.*, sum(invoice_items.quantity * invoice_items.unit_price/100.0) as revenue')
+    select('items.*, sum(invoice_items.quantity * invoice_items.unit_price/100.0) as revenue')
     .joins(invoices: :transactions)
     .where("transactions.result = 'success'")
     .group('items.id')

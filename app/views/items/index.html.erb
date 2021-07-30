@@ -2,24 +2,37 @@
 <h3>My Items</h3>
 
 <%= link_to 'New Item', new_merchant_item_path(@merchant) %>
+<article>
+  <h3>Enabled Items</h3>
+  <div class="enabled">
+    <% @items.status_enabled.each do |item| %>
+      <section id="item-<%= item.id %>">
+        <%= link_to "#{item.name}", merchant_item_path(@merchant, item) %>
+        <%= button_to 'Disable', merchant_item_path(@merchant, item), params: { status: 'disabled'}, method: :patch %>
+      </section>
+    <% end %>
+  </div>
 
-<h3>Enabled Items</h3>
-<div class="enabled">
-  <% @items.status_enabled.each do |item| %>
-    <section id="item-<%= item.id %>">
-      <%= link_to "#{item.name}", merchant_item_path(@merchant, item) %>
-      <%= button_to 'Disable', merchant_item_path(@merchant, item), params: { status: 'disabled'}, method: :patch %>
-    </section>
-  <% end %>
-</div>
 
+  <h3>Disabled Items</h3>
+  <div class="disabled">
+    <% @items.status_disabled.each do |item| %>
+      <section id="item-<%= item.id %>">
+        <%= link_to "#{item.name}", merchant_item_path(@merchant, item) %>
+        <%= button_to 'Enable', merchant_item_path(@merchant, item), params: { status: 'enabled'}, method: :patch %>
+      </section>
+    <% end %>
+  </div>
+</article>
 
-<h3>Disabled Items</h3>
-<div class="disabled">
-  <% @items.status_disabled.each do |item| %>
-    <section id="item-<%= item.id %>">
-      <%= link_to "#{item.name}", merchant_item_path(@merchant, item) %>
-      <%= button_to 'Enable', merchant_item_path(@merchant, item), params: { status: 'enabled'}, method: :patch %>
-    </section>
-  <% end %>
-</div>
+<aside class="top-items">
+  <h3>Top Items</h3>
+  <ol>
+    <% @items.popular_items.each do |item| %>
+      <li>
+      <%= item.name %> - <%= number_to_currency(item.revenue) %> in sales <br>
+      Top day for <%= item.name %> was <%= @items.item_top_day(item.id) %>
+      </li>
+    <% end %>
+  </ol>
+</aside>

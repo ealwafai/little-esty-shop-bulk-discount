@@ -35,8 +35,8 @@ RSpec.describe Item, type: :model do
     describe '.popular_items' do
       it 'returns top 5 items by revenue' do
         customer = create(:customer)
-        invoice_1 = create(:invoice, customer: customer)
-        invoice_2 = create(:invoice, customer: customer)
+        invoice_1 = create(:invoice, customer: customer, status: 'completed')
+        invoice_2 = create(:invoice, customer: customer, status: 'completed')
         item_4 = create(:item)
         item_5 = create(:item)
         item_6 = create(:item)
