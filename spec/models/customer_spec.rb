@@ -39,8 +39,28 @@ RSpec.describe Customer, type: :model do
       end
     end
   end
-  # describe 'instance methods' do
-  #   describe '#' do
-  #   end
-  # end
+  
+  describe 'instance methods' do
+    before :each do
+      @customer_1 = create(:customer)
+      @customer_2 = create(:customer)
+      @customer_3 = create(:customer)
+
+      Customer.all.each do |customer|
+        create_list(:invoice, 1, customer: customer)
+      end
+
+      create_list(:transaction, 2, result: 'failed', invoice: @customer_1.invoices.first)
+      create_list(:transaction, 2, result: 'success', invoice: @customer_2.invoices.first)
+      create_list(:transaction, 4, result: 'success', invoice: @customer_3.invoices.first)
+    end
+
+    describe '::successful_transactions' do
+      it 'displays successful transactions' do
+        expect(@customer_1.successful_transactions).to eq(0)
+        expect(@customer_2.successful_transactions).to eq(2)
+        expect(@customer_3.successful_transactions).to eq(4)
+      end
+    end
+  end
 end
