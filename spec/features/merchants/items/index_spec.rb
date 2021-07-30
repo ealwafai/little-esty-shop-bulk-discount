@@ -22,9 +22,11 @@ RSpec.describe 'Merchant Items Index Page' do
     it 'each item has a button to enable or disable' do
       within("#item-#{@item_1.id}") do
         expect(page).to have_button('Enable')
+        expect(page).to_not have_button('Disable')
       end
       within("#item-#{@item_2.id}") do
         expect(page).to have_button('Disable')
+        expect(page).to_not have_button('Enable')
       end
     end
     it 'can change status but clicking button' do
@@ -33,14 +35,17 @@ RSpec.describe 'Merchant Items Index Page' do
       end
       within("#item-#{@item_1.id}") do
         expect(page).to have_button('Disable')
+        expect(page).to_not have_button('Enable')
       end
     end
     it 'has item in sections by status' do
       within(".enabled") do
         expect(page).to have_content(@item_2.name)
+        expect(page).to_not have_content(@item_1.name)
       end
       within(".disabled") do
         expect(page).to have_content(@item_1.name)
+        expect(page).to_not have_content(@item_2.name)
       end
     end
   end
@@ -74,6 +79,7 @@ RSpec.describe 'Merchant Items Index Page' do
         expect(item_4.name).to appear_before(item_6.name)
         expect(item_6.name).to appear_before(@item_2.name)
         expect(@item_2.name).to appear_before(item_5.name)
+        expect(page).to_not have_content(@item_3.name)
       end
     end
     it 'has top 5 revenue earners highest day' do
