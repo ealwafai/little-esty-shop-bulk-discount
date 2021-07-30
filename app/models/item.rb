@@ -30,7 +30,7 @@ class Item < ApplicationRecord
     .where("transactions.result = 'success'")
     .group('invoices.created_at')
     .order('revenue DESC', 'invoices.created_at DESC')
-    .find(item_id).created_at.strftime('%m/%d/%y')
+    .find(item_id).created_at
   end
 
   def unit_price_dollars

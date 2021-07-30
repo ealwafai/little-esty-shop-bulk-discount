@@ -62,7 +62,7 @@ RSpec.describe Item, type: :model do
         transaction_1 = create(:transaction, result: 'success', invoice: invoice_1)
         transaction_2 = create(:transaction, result: 'success', invoice: invoice_2)
 
-        expect(Item.item_top_day(@item_1.id)).to eq('03/06/21')
+        expect(Item.item_top_day(@item_1.id)).to eq(Time.parse('2021-03-06 21:54:10 UTC'))
       end
     end
   end
