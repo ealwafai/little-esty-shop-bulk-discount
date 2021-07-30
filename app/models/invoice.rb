@@ -5,6 +5,8 @@ class Invoice < ApplicationRecord
   has_many :transactions
   enum status: [ 'in progress', :completed, :cancelled ]
 
+  validates :status, presence: true
+
   def self.merchants_invoices(merch_id)
     joins(:items).where('merchant_id = ?', merch_id).select("invoices.*").distinct
   end
