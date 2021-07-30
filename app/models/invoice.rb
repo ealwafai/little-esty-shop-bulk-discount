@@ -5,6 +5,14 @@ class Invoice < ApplicationRecord
   has_many :transactions, :dependent => :destroy
   enum status: [ 'in progress', :completed, :cancelled ]
 
+  def self.incomplete_invoices
+    joins(:invoice_items)
+    .where.not(status: 2)
+    .where.not("invoice_items.status = ?", 2)
+    .order(created_at: :asc)
+    .distinct
+  end
+
   def total_revenue
     invoice_items.sum("unit_price * quantity") / 100.00
   end
