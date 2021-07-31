@@ -11,6 +11,8 @@
 
   <body>
     <header>Little Esty Shop</header>
+    <%= GithubService.user_info('InOmn1aParatus') %>
     <%= yield %>
+    <%= @github_info.name %>
   </body>
 </html>
