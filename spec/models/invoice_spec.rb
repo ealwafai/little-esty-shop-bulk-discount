@@ -7,13 +7,10 @@ RSpec.describe Invoice, type: :model do
     it { should have_many(:transactions) }
     it { should have_many(:items).through(:invoice_items) }
   end
-
-  # describe 'validations' do
-  #   it { should validate_presence_of(:) }
-  # end
-  # before :each do
-  #
-  # end
+  
+   describe 'validations' do
+    it { should validate_presence_of(:status) }
+  end
   
   describe 'class methods' do
     describe '::incomplete_invoices' do
@@ -34,6 +31,34 @@ RSpec.describe Invoice, type: :model do
         expect(Invoice.incomplete_invoices).to eq(invoice_list)
         expect(Invoice.incomplete_invoices[0]).to eq(invoice_4)
         expect(Invoice.incomplete_invoices[1]).to eq(invoice_5)
+      end
+    end
+    
+     describe '::merchants_invoices' do
+      it 'returns all invoices for a specific merchant' do
+        merchant_1 = create(:merchant)
+        merchant_2 = create(:merchant)
+
+        customer_1 = create(:customer)
+        customer_2 = create(:customer)
+
+        item_1 = create(:item, merchant_id: merchant_1.id)
+        item_2 = create(:item, merchant_id: merchant_1.id)
+        item_3 = create(:item, merchant_id: merchant_2.id)
+
+        invoice_1 = create(:invoice, customer_id: customer_1.id)
+        invoice_2 = create(:invoice, customer_id: customer_1.id)
+        invoice_3 = create(:invoice, customer_id: customer_2.id)
+        invoice_4 = create(:invoice, customer_id: customer_2.id)
+
+        invoice_item_1 = create(:invoice_item, item_id: item_1.id, invoice_id: invoice_1.id)
+        invoice_item_2 = create(:invoice_item, item_id: item_2.id, invoice_id: invoice_2.id)
+        invoice_item_3 = create(:invoice_item, item_id: item_3.id, invoice_id: invoice_2.id)
+        invoice_item_4 = create(:invoice_item, item_id: item_1.id, invoice_id: invoice_3.id)
+        invoice_item_5 = create(:invoice_item, item_id: item_2.id, invoice_id: invoice_3.id)
+        invoice_item_6 = create(:invoice_item, item_id: item_3.id, invoice_id: invoice_4.id)
+
+        expect(Invoice.merchants_invoices(merchant_1.id)).to eq([invoice_1, invoice_2, invoice_3])
       end
     end
   end
