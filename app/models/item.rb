@@ -17,7 +17,12 @@ class Item < ApplicationRecord
 
 
   def self.ready_to_ship
-    joins(invoices: :transactions).select('items.*, invoices.id as invoice_id, invoices.created_at as inv_created_at').distinct.where("transactions.result = ?", 'success').where.not("invoice_items.status = ?", 2).order('invoices.created_at')
+    joins(invoices: :transactions)
+    .select('items.*, invoices.created_at as inv_created_at, invoices.id as invoice_id')
+    .where("transactions.result = ?", 'success')
+    .where.not("invoice_items.status = ?", 2)
+    .distinct
+    .order('invoices.created_at')
   end
 
   def self.popular_items

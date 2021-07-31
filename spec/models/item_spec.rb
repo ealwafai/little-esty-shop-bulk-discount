@@ -63,7 +63,7 @@ RSpec.describe Item, type: :model do
         invoice_item_7 = create(:invoice_item, item_id: @item_1.id, invoice_id: invoice_7.id, status: :packaged)
         invoice_item_8 = create(:invoice_item, item_id: @item_2.id, invoice_id: invoice_8.id, status: :shipped)
 
-        expect(Item.ready_to_ship.pluck(:name)).to eq([@item_1.name, @item_2.name, @item_3.name, @item_2.name, @item_1.name])
+        expect(Item.ready_to_ship).to eq([@item_1, @item_2, @item_3, @item_2, @item_1])
       end
     end
     describe '.popular_items' do
