@@ -15,6 +15,14 @@ class Item < ApplicationRecord
     where(status: 'disabled')
   end
 
+  def self.ready_to_ship
+    select('items.*, invoices.id, invoices.created_at, transactions.result')
+    .joins(invoices: :transactions)
+    .where("transactions.result = ?", 'success')
+    .where.not("invoice_items.status = ?", 2)
+    .order('invoices.created_at')
+  end
+
   def unit_price_dollars
     unit_price / 100.0
   end
