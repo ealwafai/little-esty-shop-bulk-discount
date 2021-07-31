@@ -83,15 +83,16 @@ RSpec.describe 'Admin Deshboard/Index page' do
   end
 
   it 'displays creation dates of invoices ordered oldest to newest' do
-    inv_id_1 = "ID: #{@invoice_4.id}"
-    inv_id_2 = "ID: #{@invoice_5.id}"
+    # inv_id_1 = "ID: #{@invoice_4.id}"
+    # inv_id_2 = "ID: #{@invoice_5.id}"
 
     visit admin_index_path
 
     within("#incomplete_invoices") do
       expect(page).to have_content("Date: #{@invoice_4.created_at_display}")
       expect(page).to have_content("Date: #{@invoice_5.created_at_display}")
-      expect(inv_id_1).to appear_before(inv_id_2)
+      save_and_open_page
+      expect().to appear_before()
     end
   end
   # In the section for "Incomplete Invoices",
