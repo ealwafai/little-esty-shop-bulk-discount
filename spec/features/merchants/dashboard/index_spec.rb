@@ -14,13 +14,13 @@ RSpec.describe 'Merchant Dashboard' do
       @customer_6 = create(:customer)
       @customer_7 = create(:customer)
 
-      @invoice_1 = create(:invoice, customer: @customer_1)
-      @invoice_2 = create(:invoice, customer: @customer_2)
-      @invoice_3 = create(:invoice, customer: @customer_3)
-      @invoice_4 = create(:invoice, customer: @customer_4)
-      @invoice_5 = create(:invoice, customer: @customer_5)
-      @invoice_6 = create(:invoice, customer: @customer_6)
-      @invoice_7 = create(:invoice, customer: @customer_7)
+      @invoice_1 = create(:invoice, customer: @customer_1, created_at: '2021-07-10 00:00:00 UTC')
+      @invoice_2 = create(:invoice, customer: @customer_2, created_at: '2021-07-07 00:00:00 UTC')
+      @invoice_3 = create(:invoice, customer: @customer_3, created_at: '2021-07-12 00:00:00 UTC')
+      @invoice_4 = create(:invoice, customer: @customer_4, created_at: '2021-07-09 00:00:00 UTC')
+      @invoice_5 = create(:invoice, customer: @customer_5, created_at: '2021-07-06 00:00:00 UTC')
+      @invoice_6 = create(:invoice, customer: @customer_6, created_at: '2021-07-11 00:00:00 UTC')
+      @invoice_7 = create(:invoice, customer: @customer_7, created_at: '2021-07-08 00:00:00 UTC')
 
       @transaction_1 = create(:transaction, invoice: @invoice_1)
       @transaction_2 = create(:transaction, invoice: @invoice_1)
@@ -45,15 +45,19 @@ RSpec.describe 'Merchant Dashboard' do
       @transaction_21 = create(:transaction, invoice: @invoice_7)
       @transaction_22 = create(:transaction, invoice: @invoice_7)
 
-      @item = create(:item, merchant: @merchant)
+      @item_1 = create(:item, merchant: @merchant)
+      @item_2 = create(:item, merchant: @merchant)
+      @item_3 = create(:item, merchant: @merchant)
+      @item_4 = create(:item, merchant: @merchant)
 
-      @invoice_item_1 = create(:invoice_item, invoice: @invoice_1, item: @item)
-      @invoice_item_2 = create(:invoice_item, invoice: @invoice_2, item: @item)
-      @invoice_item_3 = create(:invoice_item, invoice: @invoice_3, item: @item)
-      @invoice_item_4 = create(:invoice_item, invoice: @invoice_4, item: @item)
-      @invoice_item_5 = create(:invoice_item, invoice: @invoice_5, item: @item)
-      @invoice_item_6 = create(:invoice_item, invoice: @invoice_6, item: @item)
-      @invoice_item_7 = create(:invoice_item, invoice: @invoice_7, item: @item)
+
+      @invoice_item_1 = create(:invoice_item, invoice: @invoice_1, item: @item_1, status: :packaged)
+      @invoice_item_2 = create(:invoice_item, invoice: @invoice_2, item: @item_1, status: :shipped)
+      @invoice_item_3 = create(:invoice_item, invoice: @invoice_3, item: @item_2, status: :pending)
+      @invoice_item_4 = create(:invoice_item, invoice: @invoice_4, item: @item_2, status: :shipped)
+      @invoice_item_5 = create(:invoice_item, invoice: @invoice_5, item: @item_3, status: :packaged)
+      @invoice_item_6 = create(:invoice_item, invoice: @invoice_6, item: @item_4, status: :packaged)
+      @invoice_item_7 = create(:invoice_item, invoice: @invoice_7, item: @item_4, status: :packaged)
 
       visit "/merchants/#{@merchant.id}/dashboard"
     end
@@ -104,6 +108,47 @@ RSpec.describe 'Merchant Dashboard' do
       expect(@customer_3.first_name).to appear_before(@customer_2.first_name)
       expect(@customer_2.first_name).to appear_before(@customer_6.first_name)
       expect(@customer_6.first_name).to appear_before(@customer_1.first_name)
+    end
+    describe 'Items Ready to Ship' do
+      it 'displays all items that are ready to ship and link to the invoice' do
+        within('.ready-ship') do
+          expect(page).to have_content(@item_1.name)
+          expect(page).to have_content(@invoice_1.id)
+
+          expect(page).to have_content(@item_2.name)
+          expect(page).to have_content(@invoice_3.id)
+
+          expect(page).to have_content(@item_3.name)
+          expect(page).to have_content(@invoice_5.id)
+
+          expect(page).to have_content(@item_4.name)
+          expect(page).to have_content(@invoice_6.id)
+
+          expect(page).to have_content(@item_4.name)
+          expect(page).to have_content(@invoice_7.id)
+
+          expect(page).to_not have_content(@invoice_2.id)
+          expect(page).to_not have_content(@invoice_4.id)
+
+          click_link("#{@invoice_7.id}")
+          expect(current_path).to eq(merchant_invoice_path(@merchant, @invoice_7))
+        end
+      end
+
+      it 'displays invoice date next to item and is sorted by date' do
+        within('.ready-ship') do
+          expect(page).to have_content('Saturday, July 10, 2021')
+          expect(page).to have_content('Monday, July 12, 2021')
+          expect(page).to have_content('Tuesday, July 6, 2021')
+          expect(page).to have_content('Sunday, July 11, 2021')
+          expect(page).to have_content('Thursday, July 8, 2021')
+
+          expect('Tuesday, July 6, 2021').to appear_before('Thursday, July 8, 2021')
+          expect('Thursday, July 8, 2021').to appear_before('Saturday, July 10, 2021')
+          expect('Saturday, July 10, 2021').to appear_before('Sunday, July 11, 2021')
+          expect('Sunday, July 11, 2021').to appear_before('Monday, July 12, 2021')
+        end
+      end
     end
   end
 end

@@ -8,3 +8,10 @@
   <p> <%= customer.first_name %> <%= customer.last_name %>:
     <%= customer.successful_transactions %> purchases </p>
 <% end %>
+
+<section class="ready-ship">
+  <h3>Items Ready to Ship</h3>
+  <% @merchant.items.ready_to_ship.each do |item| %>
+    <p><%= item.name %>-Invoice #<%= link_to "#{item.invoice_id}", merchant_invoice_path(@merchant, item.invoice_id) %>-<%= item.inv_created_at.strftime('%A, %B %-d, %Y') %></p>
+  <% end %>
+</section>
