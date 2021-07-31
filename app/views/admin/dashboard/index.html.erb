@@ -20,6 +20,6 @@
 <h2>Incomplete Invoices</h2>
 <section id="incomplete_invoices">
   <% @incomplete_invoices.each do |invoice| %>
-    <p>ID: <%= invoice.id %></p>
+    <p>ID: <%= link_to "#{invoice.id}", admin_invoice_path(invoice.id) %> - Date: <%= invoice.created_at_display %></p>
   <% end %>
 </section>
