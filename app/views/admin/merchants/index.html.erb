@@ -27,7 +27,8 @@
   <ol>
     <% @merchants.top_five_by_revenue.each do |merchant| %>
     <li>
-      <%= merchant.name %> - $<%= merchant.revenue %> in sales
+      <%= merchant.name %> - $<%= merchant.revenue %> in sales <br>
+      Top day for <%= merchant.name %> was <%= @merchants.top_revenue_day(merchant.id).strftime('%m/%d/%y') %>
     </li>
     <% end %>
   </ol>

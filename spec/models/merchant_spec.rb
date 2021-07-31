@@ -27,8 +27,8 @@ RSpec.describe Merchant, type: :model do
 
     @invoice_1 = create(:invoice)
     @invoice_2 = create(:invoice)
-    @invoice_3 = create(:invoice)
-    @invoice_4 = create(:invoice)
+    @invoice_3 = create(:invoice, status: 'completed', created_at: '2019-07-24 21:54:10 UTC')
+    @invoice_4 = create(:invoice, status: 'completed', created_at: '2020-06-24 21:54:10 UTC')
     @invoice_5 = create(:invoice)
     @invoice_6 = create(:invoice)
 
@@ -64,6 +64,12 @@ RSpec.describe Merchant, type: :model do
     describe '.top_five_by_revenue' do
       it 'returns the top 5 merchants by revenue' do
         expect(Merchant.top_five_by_revenue).to eq([@merchant_3, @merchant_6, @merchant_7, @merchant_1, @merchant_4])
+      end
+    end
+
+    describe '.top_revenue_day' do
+      it 'returns the date with the most revenue for each merchant' do
+        expect(Merchant.top_revenue_day(@merchant_3.id).short_date).to eq('2020-06-24 21:54:10 UTC')
       end
     end
   end
@@ -113,7 +119,7 @@ RSpec.describe Merchant, type: :model do
         expect(merchant_1.most_popular_items).to eq([item_3, item_1, item_4, item_6, item_2])
       end
     end
-    
+
     describe '#items_top_day_revenue' do
       it 'returns merchants top date of sales for item' do
         merchant_1 = create(:merchant, status: 'enabled')

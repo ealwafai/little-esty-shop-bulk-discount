@@ -114,4 +114,52 @@ RSpec.describe 'admin merchants index page' do
       expect(page).to have_content("#{@merchant_4.name} - $90.0 in sales")
     end
   end
+
+  it 'dispalys the top merchants best revenue day' do
+    merchant_5 = create(:merchant, status: 'enabled')
+    merchant_6 = create(:merchant)
+    merchant_7 = create(:merchant)
+
+    item_1 = create(:item, merchant_id: @merchant_1.id)
+    item_2 = create(:item, merchant_id: @merchant_1.id)
+    item_3 = create(:item, merchant_id: @merchant_3.id)
+    item_4 = create(:item, merchant_id: @merchant_3.id)
+    item_5 = create(:item, merchant_id: @merchant_4.id)
+    item_6 = create(:item, merchant_id: @merchant_4.id)
+    item_7 = create(:item, merchant_id: merchant_5.id)
+    item_8 = create(:item, merchant_id: merchant_5.id)
+    item_9 = create(:item, merchant_id: merchant_6.id)
+    item_10 = create(:item, merchant_id: merchant_7.id)
+
+    invoice_1 = create(:invoice, status: 'completed', created_at: '2019-06-24 21:54:10 UTC')
+    invoice_2 = create(:invoice, status: 'completed', created_at: '2019-07-24 21:54:10 UTC')
+    invoice_3 = create(:invoice, status: 'completed', created_at: '2019-08-24 21:54:10 UTC')
+    invoice_4 = create(:invoice, status: 'completed', created_at: '2019-11-24 21:54:10 UTC')
+    invoice_5 = create(:invoice, status: 'completed', created_at: '2019-01-24 21:54:10 UTC')
+    invoice_6 = create(:invoice, status: 'completed', created_at: '2019-07-24 21:54:10 UTC')
+
+    transactions_1 = create(:transaction, invoice_id: invoice_1.id)
+    transactions_2 = create(:transaction, invoice_id: invoice_2.id)
+    transactions_3 = create(:transaction, invoice_id: invoice_3.id)
+    transactions_4 = create(:transaction, invoice_id: invoice_4.id)
+    transactions_5 = create(:transaction, invoice_id: invoice_5.id)
+    transactions_6 = create(:transaction, invoice_id: invoice_6.id)
+
+    invoice_item_1 = create(:invoice_item, quantity: 1, unit_price: 12000, item_id: item_1.id, invoice_id: invoice_1.id)
+    invoice_item_1 = create(:invoice_item, quantity: 1, unit_price: 10100, item_id: item_2.id, invoice_id: invoice_1.id)
+    invoice_item_1 = create(:invoice_item, quantity: 2, unit_price: 20000, item_id: item_10.id, invoice_id: invoice_2.id)
+    invoice_item_1 = create(:invoice_item, quantity: 2, unit_price: 15000, item_id: item_4.id, invoice_id: invoice_3.id)
+    invoice_item_1 = create(:invoice_item, quantity: 3, unit_price: 15000, item_id: item_3.id, invoice_id: invoice_4.id)
+    invoice_item_1 = create(:invoice_item, quantity: 1, unit_price: 9000, item_id: item_5.id, invoice_id: invoice_5.id)
+    invoice_item_1 = create(:invoice_item, quantity: 2, unit_price: 23000, item_id: item_9.id, invoice_id: invoice_6.id)
+
+    visit admin_merchants_path
+    save_and_open_page
+    within ("#top_revenue") do
+      expect(page).to have_content("Top day for #{@merchant_1.name} was 06/24/19")
+      expect(page).to have_content("Top day for #{@merchant_3.name} was 11/24/19")
+      expect(page).to have_content("Top day for #{@merchant_4.name} was 01/24/19")
+      expect(page).to have_content("Top day for #{merchant_6.name} was 07/24/19")
+    end
+  end
 end
