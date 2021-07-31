@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Admin Invoice show page' do
   before :each do
-    @invoice_1 = create(:invoice)
+    @invoice_1 = create(:invoice, status: 'in progress')
     @item_1 = create(:item)
     @invoice_item_1 = InvoiceItem.create!(
       invoice: @invoice_1,
@@ -44,7 +44,7 @@ RSpec.describe 'Admin Invoice show page' do
 
   it 'can update status using select field' do
     visit admin_invoice_path(@invoice_1)
-    expect(@invoice_1.status).to eq('cancelled')
+    expect(@invoice_1.status).to eq('in progress')
     select('Completed')
     click_button 'Update Invoice'
     @invoice_1.reload
