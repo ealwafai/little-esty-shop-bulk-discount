@@ -17,8 +17,7 @@ class Item < ApplicationRecord
 
 
   def self.ready_to_ship
-    select('items.*, invoices.id, invoices.created_at, transactions.result')
-    .joins(invoices: :transactions)
+    joins(invoices: :transactions)
     .where("transactions.result = ?", 'success')
     .where.not("invoice_items.status = ?", 2)
     .order('invoices.created_at')
