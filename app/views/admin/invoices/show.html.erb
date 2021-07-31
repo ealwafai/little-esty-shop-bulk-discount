@@ -4,7 +4,7 @@
 <h2>ID #: <%= @invoice.id %></h2>
 <h3>Status:
   <%= form_with( model: [:admin, @invoice], method: :patch, url: admin_invoice_path(@invoice), local: true) do |f| %>
-    <%= f.select(:status, options_for_select([ ["In Progress", "in progress"], ["Completed", 'completed'], ["Cancelled", 'cancelled']]), {:include_blank => "Select Status"}) %>
+    <%= f.select(:status, options_for_select([ ["In Progress", "in progress"], ["Completed", 'completed'], ["Cancelled", 'cancelled']], selected: @invoice.status), {:include_blank => "Select Status"}) %>
     <%= f.submit %>
   <% end %>
 <h3>

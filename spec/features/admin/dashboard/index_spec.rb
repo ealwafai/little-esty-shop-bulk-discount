@@ -7,8 +7,8 @@ RSpec.describe 'Admin Deshboard/Index page' do
     @invoice_1 = create(:invoice, customer: @customer, status: 0)
     @invoice_2 = create(:invoice, customer: @customer, status: 0)
     @invoice_3 = create(:invoice, customer: @customer, status: 0)
-    @invoice_4 = create(:invoice, customer: @customer, status: 0)
-    @invoice_5 = create(:invoice, customer: @customer, status: 0)
+    @invoice_4 = create(:invoice, customer: @customer, status: 0, created_at: '2019-06-24 21:54:10 UTC')
+    @invoice_5 = create(:invoice, customer: @customer, status: 0, created_at: '2019-06-25 21:54:11 UTC')
     @inv_item_1 = create(:invoice_item, invoice: @invoice_1, status: 2)
     @inv_item_2 = create(:invoice_item, invoice: @invoice_2, status: 2)
     @inv_item_3 = create(:invoice_item, invoice: @invoice_3, status: 2)
@@ -83,20 +83,15 @@ RSpec.describe 'Admin Deshboard/Index page' do
   end
 
   it 'displays creation dates of invoices ordered oldest to newest' do
-    # inv_id_1 = "ID: #{@invoice_4.id}"
-    # inv_id_2 = "ID: #{@invoice_5.id}"
+    inv_1_date = "Date: #{@invoice_4.created_at_display}"
+    inv_2_date = "Date: #{@invoice_5.created_at_display}"
 
     visit admin_index_path
 
     within("#incomplete_invoices") do
       expect(page).to have_content("Date: #{@invoice_4.created_at_display}")
       expect(page).to have_content("Date: #{@invoice_5.created_at_display}")
-      save_and_open_page
-      expect().to appear_before()
+      expect(inv_1_date).to appear_before(inv_2_date)
     end
   end
-  # In the section for "Incomplete Invoices",
-  # Next to each invoice id I see the date that the invoice was created
-  # And I see the date formatted like "Monday, July 18, 2019"
-  # And I see that the list is ordered from oldest to newest
 end
