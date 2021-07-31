@@ -15,12 +15,31 @@ class Item < ApplicationRecord
     where(status: 'disabled')
   end
 
+
   def self.ready_to_ship
     select('items.*, invoices.id, invoices.created_at, transactions.result')
     .joins(invoices: :transactions)
     .where("transactions.result = ?", 'success')
     .where.not("invoice_items.status = ?", 2)
     .order('invoices.created_at')
+  end
+
+  def self.popular_items
+    select('items.*, sum(invoice_items.quantity * invoice_items.unit_price/100.0) as revenue')
+    .joins(invoices: :transactions)
+    .where("transactions.result = 'success'")
+    .group('items.id')
+    .order('revenue DESC')
+    .limit(5)
+  end
+
+  def self.item_top_day(item_id)
+    select('invoices.created_at, sum(invoice_items.quantity * invoice_items.unit_price/100.0) as revenue')
+    .joins(invoices: :transactions)
+    .where("transactions.result = 'success'")
+    .group('invoices.created_at')
+    .order('revenue DESC', 'invoices.created_at DESC')
+    .find(item_id).created_at
   end
 
   def unit_price_dollars
