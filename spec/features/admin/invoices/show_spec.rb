@@ -39,7 +39,7 @@ RSpec.describe 'Admin Invoice show page' do
   it 'displays select field with current invoice status selected' do
     visit admin_invoice_path(@invoice_1)
     expect(page).to have_content('Status:')
-    expect(page).to have_select(selected: 'Cancelled')
+    expect(page).to have_select(selected: "#{@invoice_1.status.titleize}")
   end
 
   it 'can update status using select field' do
