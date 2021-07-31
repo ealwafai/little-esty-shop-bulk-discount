@@ -11,6 +11,7 @@ RSpec.describe InvoiceItem, type: :model do
     it { should validate_presence_of(:quantity) }
     it { should validate_presence_of(:unit_price) }
     it { should validate_presence_of(:status) }
+  end
 
   describe 'instance methods' do
     describe '#price_display' do
@@ -21,7 +22,8 @@ RSpec.describe InvoiceItem, type: :model do
           invoice: invoice,
           item: item,
           quantity: 1,
-          unit_price: 11111
+          unit_price: 11111,
+          status: 0
         )
         expect(invoice_item.price_display).to eq(111.11)
       end
