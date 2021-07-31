@@ -11,6 +11,7 @@ RSpec.describe InvoiceItem, type: :model do
     it { should validate_presence_of(:quantity) }
     it { should validate_presence_of(:unit_price) }
     it { should validate_presence_of(:status) }
+  end
 
   describe 'instance methods' do
     describe '#price_display' do
