@@ -6,15 +6,15 @@ RSpec.describe 'Edit Item Page' do
     visit edit_merchant_item_path(@merchant, @item)
   end
   it 'has previous information on form to edit' do
-    expect(page).to have_field(:name, with: "#{@item.name}")
-    expect(page).to have_field(:description, with: "#{@item.description}")
-    expect(page).to have_field(:unit_price, with: "#{@item.unit_price_dollars}")
+    expect(page).to have_field(:item_name, with: "#{@item.name}")
+    expect(page).to have_field(:item_description, with: "#{@item.description}")
+    expect(page).to have_field(:item_unit_price, with: "$#{@item.unit_price_dollars}")
   end
   it 'can enter new information and submit to be redirected to merchant item page and see update notice' do
-    fill_in(:name, with: 'Lotion')
-    fill_in(:description, with: 'aloe body lotion')
-    fill_in(:unit_price, with: 6.50)
-    click_button('Submit')
+    fill_in(:item_name, with: 'Lotion')
+    fill_in(:item_description, with: 'aloe body lotion')
+    fill_in(:item_unit_price, with: 650)
+    click_button('Update Item')
 
     expect(current_path).to eq(merchant_item_path(@merchant, @item))
     expect(page).to have_content('Lotion')
