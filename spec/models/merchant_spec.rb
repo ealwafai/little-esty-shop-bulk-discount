@@ -5,6 +5,11 @@ RSpec.describe Merchant, type: :model do
     it { should have_many(:items) }
   end
 
+  describe 'validations' do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:status) }
+  end
+
   before :each do
     @merchant_1 = create(:merchant, status: 'enabled')
     @merchant_2 = create(:merchant)
@@ -51,13 +56,13 @@ RSpec.describe Merchant, type: :model do
   describe 'class methods' do
     describe '.enabled' do
       it 'returns all merchants that are enabled' do
-        expect(Merchant.enabled).to eq([@merchant_1, @merchant_3, @merchant_4, @merchant_5])
+        expect(Merchant.status_enabled).to eq([@merchant_1, @merchant_3, @merchant_4, @merchant_5])
       end
     end
 
     describe '.disabled' do
       it 'returns all merchants that are disabled' do
-          expect(Merchant.disabled).to eq([@merchant_2, @merchant_6, @merchant_7])
+          expect(Merchant.status_disabled).to eq([@merchant_2, @merchant_6, @merchant_7])
       end
     end
 
