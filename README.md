@@ -38,4 +38,4 @@ This project requires Ruby 2.7.2.
 1. [Evaluation](./doc/evaluation.md)
 
 
-<img width= "500" alt="Screen Shot 2021-08-02 at 5 40 35 PM" src="https://user-images.githubusercontent.com/77654906/127936691-f3d2e8a9-8c08-4951-894a-f47df6a3170c.png">
+<img width= "700" alt="Screen Shot 2021-08-02 at 5 40 35 PM" src="https://user-images.githubusercontent.com/77654906/127936691-f3d2e8a9-8c08-4951-894a-f47df6a3170c.png">
