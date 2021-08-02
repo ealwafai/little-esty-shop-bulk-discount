@@ -1,2 +1,0 @@
-class GithubUser
-end
