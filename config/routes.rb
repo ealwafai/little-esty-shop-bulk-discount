@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 
   resources :admin, controller: 'admin/dashboard', only: [:index]
 
-  resources :merchants do
+  resources :merchants, only: [:index] do
+    resources :dashboard, only: [:index]
     resources :items
     resources :invoices, only: [:index, :show]
   end
