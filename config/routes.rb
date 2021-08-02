@@ -11,7 +11,4 @@ Rails.application.routes.draw do
     resources :items
     resources :invoices, only: [:index, :show]
   end
-
-  resources :admin, controller: 'admin/dashboard', only: [:index]
-
 end
