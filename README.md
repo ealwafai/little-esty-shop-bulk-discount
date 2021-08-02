@@ -37,9 +37,6 @@ This project requires Ruby 2.7.2.
 1. [Extensions](./doc/extensions.md)
 1. [Evaluation](./doc/evaluation.md)
 
-
-<img width= "750" alt="Screen Shot 2021-08-02 at 5 40 35 PM" src="https://user-images.githubusercontent.com/77654906/127936691-f3d2e8a9-8c08-4951-894a-f47df6a3170c.png">
-
 # Relational Rails 
 
 ## Table of Contents
@@ -97,6 +94,7 @@ From the main page, the user will be able to navigate through either *Car Dealer
 
 ## Database Schema
 [![Screen-Shot-2021-07-14-at-8-05-03-PM.png](https://i.postimg.cc/qv7KYrC9/Screen-Shot-2021-07-14-at-8-05-03-PM.png)](https://postimg.cc/PPBNpBy4)
+[![Screen-Shot-2021-08-02-at-4-57-55-PM.png](https://postimg.cc/QVRMn6hD)]
 
 ## Contributors
 
