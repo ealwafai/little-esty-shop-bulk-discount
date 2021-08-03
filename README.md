@@ -72,6 +72,7 @@ Learning goals and areas of focus consisted of:
 
 ## Tools Used
 
+|             |               |               |               |
 |   :----:    |    :----:     |    :----:     |    :----:     |
 | Ruby 2.7.2  | SQL           | SimpleCov     | Github        |
 | Rails       | ActiveRecord  | HoundCI       | VSCode/Atom   |
