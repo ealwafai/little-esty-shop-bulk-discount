@@ -14,4 +14,5 @@ Rails.application.routes.draw do
 
   resources :admin, controller: 'admin/dashboard', only: [:index]
 
+  get '/', to: 'welcome#index'
 end
