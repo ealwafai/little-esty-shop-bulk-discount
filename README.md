@@ -73,12 +73,15 @@ Learning goals and areas of focus consisted of:
 
 ## Tools Used
 
-|             |               |               |               |
-|   :----:    |    :----:     |    :----:     |    :----:     |
-| Ruby 2.7.2  | SQL           | SimpleCov     | Github        |
-| Rails       | ActiveRecord  |               | VSCode/Atom   |
-| RSpec       | HTML5         | Capybara      | Launchy       |
-| Pry         | CSS3          | ShouldaMatcher| Orderly       |
+| Development | Testing       | Gems          |
+|   :----:    |    :----:     |    :----:     |
+| Ruby 2.7.2  | RSpec         | SimpleCov     |
+| Rails       |               | Pry           |
+| HTML5       |               | Capybara      |
+| CSS3        |               | ShouldaMatcher|
+| VSCode      |               | Launchy       |
+| Atom        |               | Orderly       |
+| Github      |               |               |
 
 ## Getting Started
 
