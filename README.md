@@ -93,8 +93,7 @@ The project home page and requirements can be found [here](https://backend.turin
 From the main page, the user will be able to navigate through either *Car Dealerships* and their *Cars*, or *Grocery Stores* and their *Groceries*. The user can easily access, manipulate, and sort information from within the database using a bright and colorful interface.
 
 ## Database Schema
-[![Screen-Shot-2021-07-14-at-8-05-03-PM.png](https://i.postimg.cc/qv7KYrC9/Screen-Shot-2021-07-14-at-8-05-03-PM.png)](https://postimg.cc/PPBNpBy4)
-[![Screen-Shot-2021-08-02-at-4-57-55-PM.png](https://postimg.cc/QVRMn6hD)]
+[![Screen-Shot-2021-08-02-at-4-57-55-PM.png](https://i.postimg.cc/285ByJt1/Screen-Shot-2021-08-02-at-4-57-55-PM.png)](https://postimg.cc/QVRMn6hD)
 
 ## Contributors
 
