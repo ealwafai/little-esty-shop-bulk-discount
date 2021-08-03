@@ -71,15 +71,15 @@ RSpec.describe Merchant, type: :model do
         expect(Merchant.top_five_by_revenue).to eq([@merchant_3, @merchant_6, @merchant_7, @merchant_1, @merchant_4])
       end
     end
-
-    describe '.top_revenue_day' do
-      it 'returns the date with the most revenue for each merchant' do
-        expect(Merchant.top_revenue_day(@merchant_3.id).short_date).to eq('2020-06-24 21:54:10 UTC')
-      end
-    end
   end
 
   describe 'instance methods' do
+    describe '#top_revenue_day' do
+      it 'returns the date with the most revenue for each merchant' do
+        expect(@merchant_3.top_revenue_day).to eq('2020-06-24 21:54:10 UTC')
+      end
+    end
+    
     describe '#items_enabled' do
       it 'returns all merchants items with status enabled' do
         merchant_1 = create(:merchant, status: 'enabled')
