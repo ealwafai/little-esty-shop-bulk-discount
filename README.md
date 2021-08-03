@@ -1,5 +1,18 @@
 # Little Esty Shop
 
+## Table of Contents
+
+- [Background and Description](#background-and-description)
+- [Learning Goals](#learning-goals)
+- [Requirements](#requirements)
+- [Setup](#setup)
+- [Phases](#phases)
+- [Tools Used](#tools-used)
+- [Getting Started](#getting-started)
+- [Features](#features)
+- [Database Schema](#database-schema)
+- [Contributors](#contributors)
+
 ## Background and Description
 
 "Little Esty Shop" is a group project that requires students to build a fictitious e-commerce platform where merchants and admins can manage inventory and fulfill customer invoices.
@@ -37,70 +50,56 @@ This project requires Ruby 2.7.2.
 1. [Extensions](./doc/extensions.md)
 1. [Evaluation](./doc/evaluation.md)
 
-# Relational Rails 
+## Database Schema
+<img width= "750" alt="Screen Shot 2021-08-02 at 5 40 35 PM" src="https://user-images.githubusercontent.com/77654906/127936691-f3d2e8a9-8c08-4951-894a-f47df6a3170c.png">
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Learning Goals](#learning-goals)
-- [Tools Used](#tools-used)
-- [Getting Started](#getting-started)
-- [Features](#features)
-- [Database Schema](#database-schema)
-- [Contributors](#contributors)
 
 ## Overview
 
-[Relational Rails](https://github.com/ElliotOlbright/Relational_Rails) is a week long paired project during Mod 2 of Turing School's Back-End Engineering program.
+[Little-Esty-Shop](https://github.com/InOmn1aParatus/little-esty-shop) is a week long group project during Mod 2 of Turing School's Back-End Engineering program.
 
 The goal was to create a functioning Rails Application that can take users through a website and give them the ability to use CRUD commands to Create, Read, Update, and Destroy data while being able to veiw the changes on the website(Rails Application).
 
 ## Learning Goals
 
 Learning goals and areas of focus consisted of:
-- Design a One-to-Many relationship using a schema designer
+- Design multiple Many-to-Many relationships using a schema designer
 - Write migrations to create tables with columns of varying data types and foreign keys.
 - Use Rails to create web pages that allow users to CRUD resources
 - Create instance and class methods on a Rails model that use ActiveRecord methods and helpers
 - Write model and feature tests that fully cover data logic and user behavior
 
-The project home page and requirements can be found [here](https://backend.turing.edu/module2/projects/relational_rails).
 
 ## Tools Used
-|             |               |               |               |
+
 |   :----:    |    :----:     |    :----:     |    :----:     |
 | Ruby 2.7.2  | SQL           | SimpleCov     | Github        |
-| Rails       | ActiveRecord  | HoundCI       | VSCode        |
+| Rails       | ActiveRecord  | HoundCI       | VSCode/Atom   |
 | RSpec       | HTML5         | Capybara      | Launchy       |
 | Pry         | CSS3          | ShouldaMatcher| Orderly       |
 
 ## Getting Started
 
-**Fork this repository:** [Relational Rails](https://github.com/ElliotOlbright/Relational_Rails
 
-**Clone your forked repository:** Run `git clone` with the copied URL.
-
-**Change Directory into Rails App** Run `cd Relational_Rails` in command line.
-
-**Create, Migrate, and Seed Database** Run `rails db:{create, migrate, seed}` in command line.
-
-**Run Rails Server in Command-Line** Run `rails s` in command line.
-
-**Open Web Browser and go to URL *Localhost:3000*** Enjoy the app :)
 
 ## Features
 
-From the main page, the user will be able to navigate through either *Car Dealerships* and their *Cars*, or *Grocery Stores* and their *Groceries*. The user can easily access, manipulate, and sort information from within the database using a bright and colorful interface.
 
-## Database Schema
-[![Screen-Shot-2021-08-02-at-4-57-55-PM.png](https://i.postimg.cc/285ByJt1/Screen-Shot-2021-08-02-at-4-57-55-PM.png)](https://postimg.cc/QVRMn6hD)
 
 ## Contributors
 
-👤  **Elliot Olbright** (Dealership Branch)
-- [GitHub](https://github.com/ElliotOlbright)
-- [LinkedIn](https://www.linkedin.com/in/elliotolbright/)
+👤  **Amanda McGuire**
+- [GitHub](https://github.com/amcguire17)
+- [LinkedIn](https://www.linkedin.com/in/amanda-e-mcguire/)
 
-👤  **Matt Kragen** (Grocery Store Branch)
+👤  **Matt Kragen**
 - [GitHub](https://github.com/InOmn1aParatus)
 - [LinkedIn](https://www.linkedin.com/in/mattkragen/)
+
+👤  **Carina Sweet**
+- [GitHub](https://github.com/chsweet)
+- [LinkedIn](https://www.linkedin.com/in/carina-h-sweet/)
+
+👤  **Ezzedine Alwafai**
+- [GitHub](https://github.com/ealwafai)
+- [LinkedIn](https://www.linkedin.com/in/ezzedine-alwafai/)
