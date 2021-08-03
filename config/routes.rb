@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'welcome#index'
+
   namespace :admin do
     resources :merchants
     resources :invoices
@@ -13,6 +15,4 @@ Rails.application.routes.draw do
   end
 
   resources :admin, controller: 'admin/dashboard', only: [:index]
-
-  get '/', to: 'welcome#index'
 end
