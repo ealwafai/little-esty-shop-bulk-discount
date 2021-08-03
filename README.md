@@ -43,6 +43,7 @@ This project requires Ruby 2.7.2.
 * Run the test suite with `bundle exec rspec`.
 * Run your development server with `rails s` to see the app in action.
 
+
 ## Phases
 
 1. [Database Setup](./doc/db_setup.md)
@@ -75,7 +76,7 @@ Learning goals and areas of focus consisted of:
 |             |               |               |               |
 |   :----:    |    :----:     |    :----:     |    :----:     |
 | Ruby 2.7.2  | SQL           | SimpleCov     | Github        |
-| Rails       | ActiveRecord  | HoundCI       | VSCode/Atom   |
+| Rails       | ActiveRecord  |               | VSCode/Atom   |
 | RSpec       | HTML5         | Capybara      | Launchy       |
 | Pry         | CSS3          | ShouldaMatcher| Orderly       |
 
