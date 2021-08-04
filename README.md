@@ -7,10 +7,10 @@
 - [Requirements](#requirements)
 - [Setup](#setup)
 - [Phases](#phases)
-- [Tools Used](#tools-used)
-- [Getting Started](#getting-started)
-- [Features](#features)
 - [Database Schema](#database-schema)
+- [Overview](#overview)
+- [Learning Goals](#learning-goals)
+- [Tools Used](#tools-used)
 - [Contributors](#contributors)
 
 ## Background and Description
@@ -82,13 +82,6 @@ Learning goals and areas of focus consisted of:
 | VSCode      |               | Launchy       |
 | Atom        |               | Orderly       |
 | Github      |               |               |
-
-## Getting Started
-
-
-
-## Features
-
 
 
 ## Contributors
