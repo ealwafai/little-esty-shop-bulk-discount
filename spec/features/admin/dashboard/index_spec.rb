@@ -23,13 +23,13 @@ RSpec.describe 'Admin Deshboard/Index page' do
 
   it 'shows links to admin merchants and invocies index' do
     visit admin_index_path
-    expect(page).to have_content('Merchants Index')
-    click_link 'Admin Merchants Index'
+    expect(page).to have_content('Merchants')
+    click_link 'Merchants'
     expect(current_path).to eq(admin_merchants_path)
-    
+
     visit admin_index_path
-    expect(page).to have_content('Invoices Index')
-    click_link 'Admin Invoices Index'
+    expect(page).to have_content('Invoices')
+    click_link 'Invoices'
     expect(current_path).to eq(admin_invoices_path)
   end
 
@@ -51,10 +51,10 @@ RSpec.describe 'Admin Deshboard/Index page' do
     create_list(:transaction, 4, result: 'success', invoice: customer_4.invoices.first)
     create_list(:transaction, 5, result: 'success', invoice: customer_5.invoices.first)
     create_list(:transaction, 6, result: 'success', invoice: customer_6.invoices.first)
-    
+
     visit admin_index_path
     expect(page).to have_content("Top 5 Customers")
-    
+
     within("#top_five") do
       expect(customer_6.first_name).to appear_before(customer_5.first_name)
       expect(page).to_not have_content(customer_1.first_name)
@@ -71,7 +71,7 @@ RSpec.describe 'Admin Deshboard/Index page' do
       expect(page).to have_content(@invoice_5.id)
     end
   end
-  
+
   it 'links to invoice show pages through their IDs' do
     visit admin_index_path
 
