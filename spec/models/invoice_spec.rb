@@ -86,7 +86,7 @@ RSpec.describe Invoice, type: :model do
         expect(invoice.total_revenue).to eq(2)
       end
 
-      it 'displays creation time in humanized format' do
+      it 'displays creation time in simple format' do
         invoice = create(:invoice, created_at: 'Wed, 28 Jul 2021 21:49:20 UTC +00:00')
         expect(invoice.created_at_display).to eq('Wednesday, July 28, 2021')
       end
