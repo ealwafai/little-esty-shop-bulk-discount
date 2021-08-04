@@ -23,6 +23,6 @@ class Invoice < ApplicationRecord
   end
 
   def created_at_display
-    created_at.strftime("%A, %B %e, %Y")
+    created_at.strftime("%A, %B %-d, %Y")
   end
 end
