@@ -8,8 +8,4 @@ class ApplicationRecord < ActiveRecord::Base
   def self.status_disabled
     where(status: 'disabled')
   end
-
-  def short_date
-    strftime('%m/%d/%y')
-  end
 end
