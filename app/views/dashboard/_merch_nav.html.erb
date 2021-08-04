@@ -6,13 +6,13 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <li class="nav-item-justify-content-end">
           <%= link_to 'Dashboard', merchant_dashboard_index_path(@merchant), class: "nav-link"%>
         </li>
-        <li class="nav-item">
+        <li class="nav-item-justify-content-end">
           <%= link_to "My Items", merchant_items_path(@merchant), class: "nav-link"%>
         </li>
-        <li class="nav-item">
+        <li class="nav-item-justify-content-end">
           <%= link_to "My Invoices", merchant_invoices_path(@merchant), class: "nav-link"%>
         </li>
       </ul>
