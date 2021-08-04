@@ -74,3 +74,26 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+repo_info = {:id=>389774449, :name=>"little-esty-shop"}
+contributor_info = [
+  {:login=>"InOmn1aParatus", :contributions=>75},
+  {:login=>"amcguire17", :contributions=>42},
+  {:login=>"ealwafai", :contributions=>41},
+  {:login=>"chsweet", :contributions=>35}
+]
+pulls_info = [
+  {user:{:login=>"InOmn1aParatus"}},
+  {user:{:login=>"ealwafai"}},
+  {user:{:login=>"chsweet"}},
+  {user:{:login=>"ealwafai"}},
+  {user:{:login=>"amcguire17"}}
+]
+
+RSpec.configure do |config|
+  config.before(:each, :type => :feature) do
+    allow(GithubService).to receive(:repo_info).and_return(repo_info)
+    allow(GithubService).to receive(:contributor_info).and_return(contributor_info)
+    allow(GithubService).to receive(:pulls_info).and_return(pulls_info)
+  end
+end
