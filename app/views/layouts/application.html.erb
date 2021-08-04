@@ -11,17 +11,13 @@
 
   <body>
     <header>Little Esty Shop</header>
-    <%= GithubService.repo_info[:name] %>
-    <% hash = Hash.new(0) %>
-    <% GithubService.pulls_info.each do |pull| %>
-      <% hash[pull[:user][:login]] += 1 %>
-    <% end %>
+    <%= @repo.name %>
 
     <h2>Contributors</h2>
-    <% GithubService.contributor_info.each do |contributor| %>
-      <%= contributor[:login] %> Commits: <%= contributor[:contributions] %> Pulls: <%= hash[contributor[:login]] %><br>
+    <% @repo_contributors.contributors.each do |contributor, contribution| %>
+      <%= contributor %> Commits: <%= contribution %> Pulls: <%= @repo_pulls.pull_requests[contributor] %><br>
     <% end %>
-    <h4>Total Pull Requests: <%= hash.values.sum %></h4>
+    <h4>Total Pull Requests: <%= @repo_pulls.pull_requests.values.sum %></h4>
     <%= yield %>
   </body>
 </html>

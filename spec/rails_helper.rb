@@ -77,10 +77,10 @@ end
 
 repo_info = {:id=>389774449, :name=>"little-esty-shop"}
 contributor_info = [
-  {:login=>"InOmn1aParatus", :contributions=>75},
-  {:login=>"amcguire17", :contributions=>42},
-  {:login=>"ealwafai", :contributions=>41},
-  {:login=>"chsweet", :contributions=>35}
+  {id: 56685055,:login=>"InOmn1aParatus", :contributions=>75},
+  {id: 79383963,:login=>"amcguire17", :contributions=>42},
+  {id: 77654906,:login=>"ealwafai", :contributions=>41},
+  {id: 81600649,:login=>"chsweet", :contributions=>35}
 ]
 pulls_info = [
   {user:{:login=>"InOmn1aParatus"}},
