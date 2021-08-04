@@ -4,6 +4,10 @@ RSpec.describe 'Merchant Dashboard' do
   describe "I visit a merchant dashboard" do
 
     before :each do
+      allow(GithubService).to receive(:repo_info).and_return({:id=>389774449, :name=>"little-esty-shop"})
+      allow(GithubService).to receive(:contributor_info).and_return([{:login=>"InOmn1aParatus", :contributions=>75}, {:login=>"amcguire17", :contributions=>42}, {:login=>"ealwafai", :contributions=>41}, {:login=>"chsweet", :contributions=>35}])
+      allow(GithubService).to receive(:pulls_info).and_return([{user:{:login=>"InOmn1aParatus"}}, {user:{:login=>"ealwafai"}}, {user:{:login=>"chsweet"}}, {user:{:login=>"ealwafai"}}, {user:{:login=>"amcguire17"}}])
+
       @merchant = create(:merchant)
 
       @customer_1 = create(:customer)
