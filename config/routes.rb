@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index]
     resources :items
     resources :invoices, only: [:index, :show]
+    resources :invoice_item, only: [:update]
   end
 
   resources :admin, controller: 'admin/dashboard', only: [:index]
