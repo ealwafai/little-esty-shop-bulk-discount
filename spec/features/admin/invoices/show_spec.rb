@@ -15,7 +15,7 @@ RSpec.describe 'Admin Invoice show page' do
 
   it 'shows information regarding the invoice' do
     visit admin_invoice_path(@invoice_1)
-    
+
     expect(page).to have_content(@invoice_1.id)
     expect(page).to have_content(@invoice_1.created_at_display)
     expect(page).to have_content(@invoice_1.customer.first_name)
