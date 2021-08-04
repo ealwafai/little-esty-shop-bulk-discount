@@ -7,15 +7,6 @@ class Item < ApplicationRecord
   has_many :invoice_items, :dependent => :destroy
   has_many :invoices, through: :invoice_items
 
-  def self.status_enabled
-    where(status: 'enabled')
-  end
-
-  def self.status_disabled
-    where(status: 'disabled')
-  end
-
-
   def self.ready_to_ship
     joins(invoices: :transactions)
     .select('items.*, invoices.created_at as inv_created_at, invoices.id as invoice_id')
