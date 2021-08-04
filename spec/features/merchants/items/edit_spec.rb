@@ -2,7 +2,7 @@ require 'rails_helper'
 RSpec.describe 'Edit Item Page' do
   before :each do
     @merchant = create(:merchant, name: 'Eucalyptus')
-    @item = create(:item, merchant: @merchant)
+    @item = create(:item, merchant: @merchant, unit_price: 3456)
     visit edit_merchant_item_path(@merchant, @item)
   end
   it 'has previous information on form to edit' do
