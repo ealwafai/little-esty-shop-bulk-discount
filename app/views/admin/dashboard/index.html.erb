@@ -2,17 +2,17 @@
 
 <div class="container">
   <div class="row">
-    <h2>Incomplete Invoices</h2>
-    <div class="col align-items-start">
+    <div class="col order-first">
       <section id="incomplete_invoices">
+        <h2>Incomplete Invoices</h2>
         <% @incomplete_invoices.each do |invoice| %>
           <li>ID: <%= link_to "#{invoice.id}", admin_invoice_path(invoice.id) %> - Date: <%= invoice.created_at_display %></li>
         <% end %>
       </section>
     </div>
-    <h2>Top 5 Customers</h2>
-    <div class="col align-self-end">
+    <div class="col order-last">
       <section id="top_five">
+        <h2>Top 5 Customers</h2>
       <% @top_five_customers.each do |customer| %>
         <li><%= customer.first_name %><%= customer.last_name %> - with <%= customer.successful_transactions %> transactions </li>
       <% end %>
