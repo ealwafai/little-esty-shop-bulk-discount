@@ -79,24 +79,12 @@ Learning goals and areas of focus consisted of:
 | Rails       |               | Pry           |
 | HTML5       |               | Capybara      |
 | CSS3        |               | ShouldaMatcher|
-| VSCode      |               | Launchy       |
+| Github      |               | Launchy       |
 | Atom        |               | Orderly       |
-| Github      |               |               |
+|             |               |               |
 
 
-## Contributors
-
-👤  **Amanda McGuire**
-- [GitHub](https://github.com/amcguire17)
-- [LinkedIn](https://www.linkedin.com/in/amanda-e-mcguire/)
-
-👤  **Matt Kragen**
-- [GitHub](https://github.com/InOmn1aParatus)
-- [LinkedIn](https://www.linkedin.com/in/mattkragen/)
-
-👤  **Carina Sweet**
-- [GitHub](https://github.com/chsweet)
-- [LinkedIn](https://www.linkedin.com/in/carina-h-sweet/)
+## Contributor
 
 👤  **Ezzedine Alwafai**
 - [GitHub](https://github.com/ealwafai)
