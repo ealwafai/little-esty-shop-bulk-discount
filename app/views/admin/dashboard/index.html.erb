@@ -1,19 +1,22 @@
 <%= render 'admin/dashboard/admin_nav' %>
 
-<br><hr><br>
-
-<h2>Top 5 Customers</h2>
-<section id="top_five">
-<% @top_five_customers.each do |customer| %>
-  <p><%= customer.first_name %><%= customer.last_name %> - with <%= customer.successful_transactions %> transactions </p>
-<% end %>
-</section>
-
-<br><hr><br>
-
-<h2>Incomplete Invoices</h2>
-<section id="incomplete_invoices">
-  <% @incomplete_invoices.each do |invoice| %>
-    <p>ID: <%= link_to "#{invoice.id}", admin_invoice_path(invoice.id) %> - Date: <%= invoice.created_at_display %></p>
-  <% end %>
-</section>
+<div class="container">
+  <div class="row">
+    <h2>Incomplete Invoices</h2>
+    <div class="col align-items-start">
+      <section id="incomplete_invoices">
+        <% @incomplete_invoices.each do |invoice| %>
+          <li>ID: <%= link_to "#{invoice.id}", admin_invoice_path(invoice.id) %> - Date: <%= invoice.created_at_display %></li>
+        <% end %>
+      </section>
+    </div>
+    <h2>Top 5 Customers</h2>
+    <div class="col align-self-end">
+      <section id="top_five">
+      <% @top_five_customers.each do |customer| %>
+        <li><%= customer.first_name %><%= customer.last_name %> - with <%= customer.successful_transactions %> transactions </li>
+      <% end %>
+      </section>
+    </div>
+  </div>
+</div>
