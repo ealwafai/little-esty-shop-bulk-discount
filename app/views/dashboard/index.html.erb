@@ -1,7 +1,4 @@
-<h1><%= @merchant.name %></h1>
-
-<p><%= link_to "My Items", merchant_items_path(@merchant) %></p>
-<p><%= link_to "My Invoices", merchant_invoices_path(@merchant) %></p>
+<%= render 'dashboard/merch_nav' %>
 
 <h3>Favorite Customers</h3>
 <% @favorite_customers.each do |customer| %>

@@ -1,5 +1,4 @@
-<h1>Admin Invoices Index</h1>
-<hr>
+<%= render 'admin/dashboard/admin_nav' %>
 
 <% @invoices.each do |invoice| %>
   <h3>ID #: <%= link_to "#{invoice.id}", admin_invoice_path(invoice) %></h3>
