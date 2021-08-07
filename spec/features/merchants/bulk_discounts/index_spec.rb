@@ -41,7 +41,6 @@ RSpec.describe 'merchant discount index' do
 
  it 'displays the next 3 holidays' do
     within 'section#holidays' do
-      save_and_open_page
       expect(page).to have_content('Upcoming Holidays')
       expect(page).to have_content('Labor Day')
       expect(page).to have_content('2021-09-06')
