@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'Merchant Dashboard' do
   describe "I visit a merchant dashboard" do
-
     before :each do
       @merchant = create(:merchant)
 
@@ -148,6 +147,16 @@ RSpec.describe 'Merchant Dashboard' do
           expect('Saturday, July 10, 2021').to appear_before('Sunday, July 11, 2021')
           expect('Sunday, July 11, 2021').to appear_before('Monday, July 12, 2021')
         end
+      end
+    end
+
+    describe 'Link to merchants bulk discounts' do
+      it 'displays a link to merchants bulk discounts index page' do
+        expect(page).to have_link('My Bulk Discounts')
+
+        click_link 'My Bulk Discounts'
+
+        expect(current_path).to eq(merchant_bulk_discounts_path(@merchant))
       end
     end
   end
