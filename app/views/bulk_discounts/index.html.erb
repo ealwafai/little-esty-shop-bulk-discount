@@ -23,3 +23,13 @@
 </table>
 
 <br>
+
+<section id='holidays'>
+  <h2>Upcoming Holidays</h2>
+  <% @holidays.each do |holiday| %>
+    <div>
+      <h4><%= holiday.holiday_name %></h4>
+      <p> <%= holiday.holiday_date %></p>
+    </div><br/>
+  <% end %>
+</section>
