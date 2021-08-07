@@ -3,6 +3,7 @@ class BulkDiscountsController < ApplicationController
   before_action :set_bulk_discount, only: [:show, :edit, :update, :destroy]
 
   def index
+    @holidays = NagerService.next_3_holidays
   end
 
   def show
