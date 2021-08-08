@@ -11,7 +11,7 @@
   </thead>
 
   <tbody>
-    <% @merchant.bulk_discounts.each do |bulk_discount| %>
+    <% @bulk_discounts.each do |bulk_discount| %>
       <tr id="bulk_discount-<%= bulk_discount.id %>">
         <td><%= bulk_discount.name %></td>
         <td><%= bulk_discount.percentage %></td>
@@ -33,3 +33,5 @@
     </div><br/>
   <% end %>
 </section>
+
+<%= link_to 'Create New Discount', new_merchant_bulk_discount_path(@merchant), class: 'btn btn-outline-success' %>
