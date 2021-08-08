@@ -16,7 +16,8 @@
         <td><%= bulk_discount.name %></td>
         <td><%= bulk_discount.percentage %></td>
         <td><%= bulk_discount.threshold %></td>
-        <td><%= link_to 'Show', merchant_bulk_discount_path(@merchant, bulk_discount) %></td>
+        <td><%= link_to 'View Details', merchant_bulk_discount_path(@merchant, bulk_discount), class: 'btn btn-outline-secondary' %></td>
+        <td><%= link_to 'Remove', merchant_bulk_discount_path(@merchant, bulk_discount), method: :delete, class: 'btn btn-outline-danger' %></td>
       </tr>
     <% end %>
   </tbody>

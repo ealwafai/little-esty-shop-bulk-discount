@@ -34,7 +34,7 @@ RSpec.describe 'merchant discount index' do
 
  it 'displays a link to each discount show page' do
    within "tr#bulk_discount-#{@bulk_discount_1.id}" do
-     click_on 'Show'
+     click_on 'View Details'
    end
    expect(current_path).to eq(merchant_bulk_discount_path(@merchant_1, @bulk_discount_1))
  end
@@ -58,5 +58,26 @@ RSpec.describe 'merchant discount index' do
     click_on 'Create New Discount'
 
     expect(current_path).to eq(new_merchant_bulk_discount_path(@merchant_1))
+  end
+
+  it 'displays a delete link next to each bulk discount' do
+
+    within "tr#bulk_discount-#{@bulk_discount_1.id}" do
+      expect(page).to have_link('Remove')
+    end
+
+    within "tr#bulk_discount-#{@bulk_discount_2.id}" do
+      expect(page).to have_link('Remove')
+    end
+  end
+
+  it 'After clicking "Remove", merchant is redirected back to bulk discounts index page and the bulk discount is no longer listed' do
+
+    within "tr#bulk_discount-#{@bulk_discount_1.id}" do
+      click_link 'Remove'
+    end
+
+    expect(current_path).to eq(merchant_bulk_discounts_path(@merchant_1))
+    expect(page).to_not have_content(@bulk_discount_1.name)
   end
 end
