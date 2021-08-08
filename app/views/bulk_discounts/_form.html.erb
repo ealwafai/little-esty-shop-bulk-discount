@@ -1,24 +1,13 @@
-<%= form_with(model: discount, local: true) do |form| %>
-  <% if discount.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(discount.errors.count, "error") %> prohibited this discount from being saved:</h2>
-
-      <ul>
-      <% discount.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_with url: path, method: method, local: true do |form| %>
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, placeholder: 'Discount name' %>
   </div>
 
   <div class="field">
     <%= form.label :percentage %>
-    <%= form.text_field :percentage %>
+    <%= form.number_field :percentage %>
   </div>
 
   <div class="field">
@@ -26,12 +15,7 @@
     <%= form.number_field :threshold %>
   </div>
 
-  <div class="field">
-    <%= form.label :merchant_id %>
-    <%= form.text_field :merchant_id %>
-  </div>
-
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Submit' %>
   </div>
 <% end %>
