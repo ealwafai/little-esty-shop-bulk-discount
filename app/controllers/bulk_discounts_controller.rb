@@ -3,6 +3,7 @@ class BulkDiscountsController < ApplicationController
   before_action :set_bulk_discount, only: [:show, :edit, :update, :destroy]
 
   def index
+    @bulk_discounts = @merchant.bulk_discounts
     @holidays = NagerService.next_3_holidays
   end
 
@@ -17,16 +18,15 @@ class BulkDiscountsController < ApplicationController
   end
 
   def create
-    @bulk_discount = BulkDiscount.new(bulk_discount_params)
-    @bulk_discount.save
+    @bulk_discount = @merchant.bulk_discounts.create(bulk_discount_params)
+
+    redirect_to merchant_bulk_discounts_path(@merchant)
   end
 
   def update
-    @bulk_discount.update(bulk_discount_params)
   end
 
   def destroy
-    bulk_discount.destroy
   end
 
   private
@@ -40,6 +40,6 @@ class BulkDiscountsController < ApplicationController
   end
 
   def bulk_discount_params
-    params.require(:bulk_discount).permit(:name, :percentage, :threshold, :merchant_id)
+    params.permit(:name, :percentage, :threshold)
   end
 end
