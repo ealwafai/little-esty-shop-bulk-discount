@@ -10,7 +10,7 @@ RSpec.describe 'merchant discount index' do
     @bulk_discount_3 = BulkDiscount.create!(name: 'BD 3', percentage: 30, threshold: 50, merchant: @merchant_1)
     @bulk_discount_4 = BulkDiscount.create!(name: 'BD 4', percentage: 50, threshold: 100, merchant: @merchant_2)
 
-    visit merchant_bulk_discounts_path(@merchant_1.id)
+    visit merchant_bulk_discounts_path(@merchant_1)
   end
 
   it 'displays the names of all of the merchant discounts' do
@@ -50,5 +50,13 @@ RSpec.describe 'merchant discount index' do
       expect(page).to have_content('2021-11-11')
       expect(page).to_not have_content('Thanksgiving Day')
     end
+  end
+
+  it 'displays a link to create a new discount' do
+    expect(page).to have_link('Create New Discount')
+
+    click_on 'Create New Discount'
+
+    expect(current_path).to eq(new_merchant_bulk_discount_path(@merchant_1))
   end
 end
