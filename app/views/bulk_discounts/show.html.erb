@@ -3,4 +3,5 @@
 <p>Percentage Discounted: <%= @bulk_discount.percentage %>%</p>
 <p>Number of Items for Eligibility: <%= @bulk_discount.threshold %>+</p><br/>
 
-<%= link_to 'Back', merchant_bulk_discounts_path(@merchant) %>
+<%= link_to 'Edit', edit_merchant_bulk_discount_path(@merchant, @bulk_discount), class: 'btn btn-outline-info' %>
+<%= link_to 'Back', merchant_bulk_discounts_path(@merchant), class: 'btn btn-outline-secondary' %>
