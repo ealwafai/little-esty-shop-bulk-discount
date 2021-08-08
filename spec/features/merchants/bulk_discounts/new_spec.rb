@@ -10,7 +10,7 @@ RSpec.describe 'Merchant new discount page' do
       fill_in :name, with: "Thanksgiving Day Discount"
       fill_in :percentage, with: 30
       fill_in :threshold, with: 20
-      click_on 'Submit'
+      click_on 'Create Discount'
 
       expect(current_path).to eq(merchant_bulk_discounts_path(merchant))
       expect(page).to have_content(merchant.bulk_discounts.last.name)
