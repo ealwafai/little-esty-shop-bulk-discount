@@ -2,20 +2,20 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name, placeholder: 'Discount name' %>
+    <%= form.text_field :name, value: name_value %>
   </div>
 
   <div class="field">
     <%= form.label :percentage %>
-    <%= form.number_field :percentage %>
+    <%= form.number_field :percentage, value: percentage_value %>
   </div>
 
   <div class="field">
     <%= form.label :threshold %>
-    <%= form.number_field :threshold %>
+    <%= form.number_field :threshold, value: threshold_value %>
   </div>
 
   <div class="actions">
-    <%= form.submit 'Submit' %>
+    <%= form.submit button_text, class: 'btn btn-outline-success'%>
   </div>
 <% end %>
