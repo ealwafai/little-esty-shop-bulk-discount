@@ -36,6 +36,19 @@ RSpec.describe 'merchant discount index' do
    within "tr#bulk_discount-#{@bulk_discount_1.id}" do
      click_on 'Show'
    end
-   expect(current_path).to eq merchant_bulk_discount_path(@merchant_1, @bulk_discount_1)
+   expect(current_path).to eq(merchant_bulk_discount_path(@merchant_1, @bulk_discount_1))
  end
+
+ it 'displays the next 3 holidays' do
+    within 'section#holidays' do
+      expect(page).to have_content('Upcoming Holidays')
+      expect(page).to have_content('Labor Day')
+      expect(page).to have_content('2021-09-06')
+      expect(page).to have_content("Columbus Day")
+      expect(page).to have_content('2021-10-11')
+      expect(page).to have_content('Veterans Day')
+      expect(page).to have_content('2021-11-11')
+      expect(page).to_not have_content('Thanksgiving Day')
+    end
+  end
 end
