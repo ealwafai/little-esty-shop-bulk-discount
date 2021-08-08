@@ -1,6 +1,6 @@
-<h1>Editing Bulk Discount</h1>
+<h1>Edit Bulk Discount</h1>
 
-<%= render 'form', discount: @bulk_discount %>
-
-<%= link_to 'Show', @bulk_discount %> |
-<%= link_to 'Back', bulk_discounts_path %>
+<%= render partial: 'form', locals: {path: "/merchants/#{@merchant.id}/bulk_discounts/#{@bulk_discount.id}", method: :patch, button_text: 'Edit Discount', name_value: @bulk_discount.name, percentage_value: @bulk_discount.percentage, threshold_value: @bulk_discount.threshold} %>
+<br>
+<br>
+<%= link_to 'Back', merchant_bulk_discounts_path(@merchant), class: 'btn btn-outline-secondary' %>
