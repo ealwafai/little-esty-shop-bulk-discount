@@ -1,24 +1,6 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @bulk_discount.name %></h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @bulk_discount.name %>
-</p>
+<p>Percentage Discounted: <%= @bulk_discount.percentage %>%</p>
+<p>Number of Items for Eligibility: <%= @bulk_discount.threshold %>+</p><br/>
 
-<p>
-  <strong>Percentage:</strong>
-  <%= @bulk_discount.percentage %>
-</p>
-
-<p>
-  <strong>Threshold:</strong>
-  <%= @bulk_discount.threshold %>
-</p>
-
-<p>
-  <strong>Merchant:</strong>
-  <%= @bulk_discount.merchant %>
-</p>
-<%#
-<%= link_to 'Edit', edit_bulk_discount_path(@bulk_discount) %> |
-<%# <%= link_to 'Back', bulk_discounts_path %> %> %>
+<%= link_to 'Back', merchant_bulk_discounts_path(@merchant) %>
