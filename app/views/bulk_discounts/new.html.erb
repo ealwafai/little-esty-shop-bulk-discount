@@ -1,6 +1,6 @@
 <h1>New Bulk Discount</h1>
 
-<%= render partial: 'form', locals: {path: "/merchants/#{@merchant.id}/bulk_discounts", method: :post} %>
+<%= render partial: 'form', locals: {path: "/merchants/#{@merchant.id}/bulk_discounts", method: :post, button_text: 'Create Discount', name_value: '', percentage_value: '', threshold_value: ''} %>
 <br>
 <br>
 <%= link_to 'Back', merchant_bulk_discounts_path(@merchant) %>
