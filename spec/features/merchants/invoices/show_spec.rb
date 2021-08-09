@@ -19,9 +19,12 @@ RSpec.describe 'Merchant Invoices show page' do
 
     @item_1 = create(:item, merchant_id: @merchant.id)
     @item_2 = create(:item, merchant_id: @merchant.id)
+    @item_3 = create(:item, merchant_id: @merchant.id)
 
-    @invoice_item_1 = create(:invoice_item, item_id: @item_1.id, invoice_id: @invoice.id, status: 1)
-    @invoice_item_2 = create(:invoice_item, item_id: @item_2.id, invoice_id: @invoice.id, status: 1)
+    @invoice_item_1 = create(:invoice_item, quantity: 2 ,item_id: @item_1.id, invoice_id: @invoice.id, status: 1)
+    @invoice_item_2 = create(:invoice_item, quantity: 5 ,item_id: @item_2.id, invoice_id: @invoice.id, status: 1)
+    @invoice_item_3 = create(:invoice_item, quantity: 15 ,item_id: @item_3.id, invoice_id: @invoice.id, status: 1)
+    @bulk_discount = BulkDiscount.create!(name: 'BD 2', percentage: 15, threshold: 10, merchant: @merchant)
 
     visit "/merchants/#{@merchant.id}/invoices/#{@invoice.id}"
   end
@@ -68,7 +71,7 @@ RSpec.describe 'Merchant Invoices show page' do
   # Then I see the total revenue that will be generated from all of my items on the invoice
 
   it "displays the total revenue from all items on the invoice" do
-    expect(page).to have_content("Total revenue from invoice: #{@invoice.total_revenue}")
+    expect(page).to have_content("Total revenue from invoice: $#{@invoice.total_revenue.round(2)}")
   end
 
 #   Merchant Invoice Show Page: Update Item Status
@@ -99,5 +102,12 @@ RSpec.describe 'Merchant Invoices show page' do
 
      expect(page).to have_select(:status, selected: 'shipped')
    end
+  end
+
+  it 'displays the total discounted revenue for my merchant from this invoice which includes bulk discounts' do
+    #     As a merchant
+    # When I visit my merchant invoice show page
+    #I see the total discounted revenue for my merchant from this invoice which includes bulk discounts in the calculation
+    expect(page).to have_content("Total discounted revenue from invoice: $#{@invoice.total_discounted_revenue.round(2)}")
   end
 end
