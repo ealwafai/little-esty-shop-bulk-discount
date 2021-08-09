@@ -24,6 +24,7 @@ RSpec.describe 'Merchant Invoices show page' do
     @invoice_item_1 = create(:invoice_item, quantity: 2 ,item_id: @item_1.id, invoice_id: @invoice.id, status: 1)
     @invoice_item_2 = create(:invoice_item, quantity: 5 ,item_id: @item_2.id, invoice_id: @invoice.id, status: 1)
     @invoice_item_3 = create(:invoice_item, quantity: 15 ,item_id: @item_3.id, invoice_id: @invoice.id, status: 1)
+
     @bulk_discount = BulkDiscount.create!(name: 'BD 2', percentage: 15, threshold: 10, merchant: @merchant)
 
     visit "/merchants/#{@merchant.id}/invoices/#{@invoice.id}"
@@ -109,5 +110,15 @@ RSpec.describe 'Merchant Invoices show page' do
     # When I visit my merchant invoice show page
     #I see the total discounted revenue for my merchant from this invoice which includes bulk discounts in the calculation
     expect(page).to have_content("Total discounted revenue from invoice: $#{@invoice.total_discounted_revenue.round(2)}")
+  end
+
+  it 'displays a link to the invoice item discount where applicable' do
+    within("#invoice_item-info-#{@invoice_item_3.id}") do
+      expect(page).to have_link('View Discount')
+
+      click_link 'View Discount'
+
+      expect(current_path).to eq(merchant_bulk_discount_path(@merchant, @bulk_discount))
+    end
   end
 end
