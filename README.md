@@ -15,7 +15,7 @@
 
 ## Background and Description
 
-"Little Esty Shop" is a group project that requires students to build a fictitious e-commerce platform where merchants and admins can manage inventory and fulfill customer invoices.
+"Little Esty Shop Bulk Discount" is a solo project that requires a student to build a fictitious e-commerce platform where merchants and admins can manage inventory and fulfill customer invoices and apply bulk discounts based on a quantity threshold.
 
 ## Learning Goals
 - Practice designing a normalized database schema and defining model relationships
