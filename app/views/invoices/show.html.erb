@@ -19,6 +19,11 @@
    <%= form.select :status, [:pending, :packaged, :shipped], selected: inv_item.status %></li>
   <%= form.submit "Update Item Status"%>
   <% end %>
+  <% if inv_item.ii_discount.present? %>
+      <%= link_to 'View Discount', merchant_bulk_discount_path(@merchant, inv_item.ii_discount) %>
+    <% else %>
+      <td> </td>
+  <% end %>
 </ul>
 </section>
 <% end %>
