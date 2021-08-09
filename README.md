@@ -52,7 +52,8 @@ This project requires Ruby 2.7.2.
 1. [Evaluation](./doc/evaluation.md)
 
 ## Database Schema
-[![Screen-Shot-2021-08-02-at-5-14-18-PM.png](https://i.postimg.cc/BnPWSScM/Screen-Shot-2021-08-02-at-5-14-18-PM.png)](https://postimg.cc/Sn41VpPM)
+![Screen Shot 2021-08-08 at 7 59 20 PM](https://user-images.githubusercontent.com/77654906/128784044-1f776a85-a240-439d-8252-73d68d048611.png)
+
 
 
 ## Overview
