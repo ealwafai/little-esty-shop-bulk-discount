@@ -1,11 +1,12 @@
 <%= render 'admin/dashboard/admin_nav' %>
 
-<%= link_to 'New Merchant', new_admin_merchant_path, class: "btn btn-outline-primary" %>
+<%= link_to 'New Merchant', new_admin_merchant_path, class: "btn btn-outline-dark" %>
+
 <div class="container">
   <div class="row">
     <div class="col order-first">
       <article>
-        <h2>Enabled Merchants</h2>
+        <h3>Enabled Merchants</h3>
         <section id="enabled">
           <% @merchants.status_enabled.each do |merchant| %>
           <div id="merchant-<%= merchant.id %>">
@@ -14,7 +15,7 @@
           </div>
           <% end %>
         </section>
-        <h2>Disabled Merchants</h2>
+        <h3>Disabled Merchants</h3>
         <section id="disabled">
           <% @merchants.status_disabled.each do |merchant| %>
           <div id="merchant-<%= merchant.id %>">

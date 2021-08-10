@@ -18,7 +18,7 @@ RSpec.describe 'Admin Deshboard/Index page' do
 
   it 'displays admin dashboard header' do
     visit admin_index_path
-    expect(page).to have_content('Welcome to the Admin Dashboard')
+    expect(page).to have_content('Admin Dashboard')
   end
 
   it 'shows links to admin merchants and invocies index' do
