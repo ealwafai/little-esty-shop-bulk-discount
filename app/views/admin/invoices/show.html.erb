@@ -1,6 +1,6 @@
 <%= render 'admin/dashboard/admin_nav' %>
 
-<h2>ID #: <%= @invoice.id %></h2>
+<h3>ID #: <%= @invoice.id %></h3>
 <h3>Status:
   <%= form_with( model: [:admin, @invoice], method: :patch, url: admin_invoice_path(@invoice), local: true) do |f| %>
     <%= f.select(:status, options_for_select([ ["In Progress", "in progress"], ["Completed", 'completed'], ["Cancelled", 'cancelled']], selected: @invoice.status), {:include_blank => "Select Status"}) %>
@@ -9,17 +9,29 @@
 <h3>
 <h3>Created at: <%= @invoice.created_at_display %><h3>
 <h3>Customer Name: <%= @invoice.customer.first_name %> <%= @invoice.customer.last_name %><h3>
-
-<br><hr>
-
-<h2>Items on this Invoice</h2>
-<% @invoice.invoice_items.each do |inv_item| %>
-  <p>Name: <%= inv_item.item.name %></p>
-  <p>Quantity: <%= inv_item.quantity %></p>
-  <p>Price: $<%= inv_item.price_display %></p>
-  <p>Item Status: <%= inv_item.status %></p>
-<% end %>
-
-<br><hr>
-
 <h3>Total Projected Revenue: $<%= @invoice.total_revenue %></h3>
+<br><hr>
+
+<h3>Items on this Invoice</h3>
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Item Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Unit Price</th>
+      <th scope="col">Status</th>
+    </tr>
+    </thead>
+<% @invoice.invoice_items.each do |inv_item| %>
+    <tbody>
+      <tr>
+        <td><%= inv_item.item.name %></td>
+        <td><%= inv_item.quantity %></td>
+        <td>$<%= inv_item.price_display %></td>
+        <td><%= inv_item.status %></td>
+      </tr>
+      <% end %>
+    </tbody>
+</table>
+
+<br><hr>

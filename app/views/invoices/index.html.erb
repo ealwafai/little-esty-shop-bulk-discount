@@ -1,6 +1,19 @@
 <%= render 'dashboard/merch_nav' %>
-
+<br>
+<div class="text-center">
 <h3>My Invoices</h3>
-<% @merchant_invoices.each do |invoice| %>
-  <p> <%= link_to "Invoice ##{invoice.id}", merchant_invoice_path(@merchant, invoice) %> </p>
-<% end %>
+</div>
+<div class="container">
+
+  <% @merchant_invoices.each do |invoice| %>
+  <div class="row justify-content-md-center">
+    <div class="col-3 mt-3">
+      <div class="card text-center  shadow mb-5 bg-white rounded">
+        <div class="card-header bg-dark">
+          <%= link_to "Invoice ##{invoice.id}", merchant_invoice_path(@merchant, invoice), class: 'btn btn-outline-warning' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

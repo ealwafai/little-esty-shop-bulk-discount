@@ -1,16 +1,17 @@
 <%= render 'dashboard/merch_nav' %>
 
 <%= link_to 'My Bulk Discounts', merchant_bulk_discounts_path(@merchant), class: 'btn btn-outline-success'%>
-
+<div class="text-center">
 <h3>Favorite Customers</h3>
 <% @favorite_customers.each do |customer| %>
   <p> <%= customer.first_name %> <%= customer.last_name %>:
     <%= customer.successful_transactions %> purchases </p>
 <% end %>
-
+<br>
 <section class="ready-ship">
   <h3>Items Ready to Ship</h3>
   <% @merchant.items.ready_to_ship.each do |item| %>
     <p><%= item.name %>-Invoice #<%= link_to "#{item.invoice_id}", merchant_invoice_path(@merchant, item.invoice_id) %>-<%= item.inv_created_at.strftime('%A, %B %-d, %Y') %></p>
   <% end %>
 </section>
+</div>

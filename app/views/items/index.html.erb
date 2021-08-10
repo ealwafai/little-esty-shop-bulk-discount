@@ -1,31 +1,8 @@
 <%= render 'dashboard/merch_nav' %>
-
+<%= link_to 'New Item', new_merchant_item_path(@merchant), class: 'btn btn-outline-success' %>
+<div class="text-center">
 <h3>My Items</h3>
-
-<%= link_to 'New Item', new_merchant_item_path(@merchant) %>
-<article>
-  <h3>Enabled Items</h3>
-  <div class="enabled">
-    <% @merchant.items_enabled.each do |item| %>
-      <section id="item-<%= item.id %>">
-        <%= link_to "#{item.name}", merchant_item_path(@merchant, item) %>
-        <%= button_to 'Disable', merchant_item_path(@merchant, item), params: { status: 'disabled'}, method: :patch %>
-      </section>
-    <% end %>
-  </div>
-
-
-  <h3>Disabled Items</h3>
-  <div class="disabled">
-    <% @merchant.items_disabled.each do |item| %>
-      <section id="item-<%= item.id %>">
-        <%= link_to "#{item.name}", merchant_item_path(@merchant, item) %>
-        <%= button_to 'Enable', merchant_item_path(@merchant, item), params: { status: 'enabled'}, method: :patch %>
-      </section>
-    <% end %>
-  </div>
-</article>
-
+<br>
 <aside class="top-items">
   <h3>Top Items</h3>
   <ol>
@@ -37,3 +14,30 @@
     <% end %>
   </ol>
 </aside>
+
+<article>
+  <h3>Enabled Items</h3>
+  <div class="enabled">
+    <% @merchant.items_enabled.each do |item| %>
+      <section id="item-<%= item.id %>">
+        <p><%= link_to "#{item.name}", merchant_item_path(@merchant, item), class: 'btn btn-outline-primary' %></p>
+        <p><%= button_to 'Disable', merchant_item_path(@merchant, item), params: { status: 'disabled'}, method: :patch %></p>
+      </section>
+    <% end %>
+  </div>
+
+
+  <h3>Disabled Items</h3>
+  <div class="disabled">
+    <% @merchant.items_disabled.each do |item| %>
+      <section id="item-<%= item.id %>">
+      <p><%= link_to "#{item.name}", merchant_item_path(@merchant, item), class: 'btn btn-outline-danger' %></p>
+      <p><%= button_to 'Enable', merchant_item_path(@merchant, item), params: { status: 'enabled'}, method: :patch %></p>
+      </section>
+      <br>
+    <% end %>
+  </div>
+</article>
+
+
+</div>

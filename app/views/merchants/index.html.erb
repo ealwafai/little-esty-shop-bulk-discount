@@ -1,5 +1,7 @@
+<div class="text-center">
 <h1>Merchants</h1>
-
+<br>
 <% @merchants.each do |merchant| %>
-  <p><%= link_to "#{merchant.name}", merchant_items_path(merchant) %></p>  
+  <p><%= link_to "#{merchant.name}", merchant_items_path(merchant), class: 'btn btn-outline-dark' %></p>
 <% end %>
+</div>
