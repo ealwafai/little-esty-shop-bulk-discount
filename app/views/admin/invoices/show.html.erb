@@ -9,7 +9,8 @@
 <h3>
 <h3>Created at: <%= @invoice.created_at_display %><h3>
 <h3>Customer Name: <%= @invoice.customer.first_name %> <%= @invoice.customer.last_name %><h3>
-<h3>Total Projected Revenue: $<%= @invoice.total_revenue %></h3>
+<h3>Total Projected Revenue: $<%= @invoice.total_revenue.round(2) %></h3>
+<h3>Total Discounted Revenue: $<%= @invoice.total_discounted_revenue.round(2) %></h3>
 <br><hr>
 
 <h3>Items on this Invoice</h3>
